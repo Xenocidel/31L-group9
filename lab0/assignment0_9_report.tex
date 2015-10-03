@@ -1,0 +1,213 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=letter, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{graphicx}
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{hyperref}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{University of California Irvine} \\  % Your university, school and/or department name(s)
+\textsc{Course: Introduction to Digital Logic Lab (31L) Fall 2015} \\ [25pt]
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Lab 0 Report\\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Kelvin Phan \\ Student ID: 51197373
+	\and
+	Patrick Skoury \\ Student ID: 75202200 % Your name
+	\and
+	Aaron Liao \\ Student ID: 90811748 % Your name
+}
+
+\date{\large\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Lessons Learned}
+
+%------------------------------------------------
+
+In this lab, we learned how to compile VHDL code, elaborate and optimize a System Verilog test bench, and simulate the waveforms produced by the test bench. 
+
+\section{Logs}
+
+\subsection{Compilation Log}
+
+\begin{verbatim}
+ncvhdl: 06.20-s015: (c) Copyright 1995-2009 Cadence Design Systems, Inc.
+TOOL:	ncvhdl	06.20-s015: Started on Oct 01, 2015 at 19:34:18 PDT
+ncvhdl
+    orgate_tb.vhd
+    -messages
+
+orgate_tb.vhd:
+	errors: 0, warnings: 0
+WORK.ORGATE_TB (entity):
+	streams: 1, words: 9
+WORK.ORGATE_TB:ORGATE_TB (architecture):
+	streams: 1, words: 31
+TOOL:	ncvhdl	06.20-s015: Exiting on Oct 01, 2015 at 19:34:19 PDT  (total: 00:00:01)
+
+\end{verbatim}
+
+\subsection{Elaboration Log}
+
+\begin{verbatim}
+ncelab: 06.20-s015: (c) Copyright 1995-2009 Cadence Design Systems, Inc.
+TOOL:	ncelab	06.20-s015: Started on Oct 01, 2015 at 19:34:57 PDT
+ncelab
+    orgate_tb:orgate_tb
+    -messages
+    -access +r
+
+	Elaborating the design hierarchy:
+ncelab: *W,CUDEFB: default binding occurred for component instance (:orgate_tb(orgate_tb):or1) with design unit (WORK.ORGATE:BEHAVIORAL).
+	Building instance specific data structures.
+	Design hierarchy summary:
+		           Instances  Unique
+		Components:        3       2
+		Default bindings:  1       -
+		Processes:         2       2
+		Signals:           3       3
+	Writing initial simulation snapshot: WORK.ORGATE_TB:ORGATE_TB
+TOOL:	ncelab	06.20-s015: Exiting on Oct 01, 2015 at 19:34:58 PDT  (total: 00:00:01)
+
+\end{verbatim}
+
+\subsection{Simulation Log}
+
+\begin{verbatim}
+ncsim: 06.20-s015: (c) Copyright 1995-2009 Cadence Design Systems, Inc.
+ncsim: *W,DLNOHV: Unable to find an 'hdl.var' file to load in.
+TOOL:	ncsim	06.20-s015: Started on Oct 01, 2015 at 16:24:41 PDT
+ncsim
+    orgate_tb
+    -input run.cmd
+    -messages
+
+Loading snapshot work.orgate_tb:orgate_tb .................... Done
+ncsim> database -open waves -into waves.shm -default
+Created default SHM database waves
+ncsim> probe -create -shm -all -variables -depth all
+Created probe 1
+ncsim> run 50ns
+Ran until 50 NS + 0
+ncsim> exit
+TOOL:	ncsim	06.20-s015: Exiting on Oct 01, 2015 at 16:24:58 PDT  (total: 00:00:17)
+
+\end{verbatim}
+
+\subsection{Simulation Log (Questasim)}
+
+\begin{verbatim}
+
+# vsim -l simulation.log -do "sim.do" -c orgate_tb_opt 
+# Start time: 16:02:10 on Oct 03,2015
+# //  Questa Sim-64
+# //  Version 10.4c linux_x86_64 Jul 19 2015
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# Loading sv_std.std
+# Loading work.orgate_tb(fast)
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.orgate(behavioral)#1
+# do sim.do
+# .
+# waveform.wlf
+# End time: 16:02:10 on Oct 03,2015, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+
+\end{verbatim}
+
+\section{Waveform Screenshots}
+
+\subsection{Questasim}
+
+\begin{figure}[hb]
+	\caption{Waveform of OR-Gate in Questasim}
+	\centering
+			\includegraphics[width=1.0\textwidth]{figs/questasim.png} %to change the size of figure modify the value of 0.4
+				\label{fig:questasim}
+\end{figure}
+
+\subsection{Cadence Incisive}
+
+\begin{figure}[hb]
+	\caption{Waveform of OR-Gate in Cadence Incisive}
+	\centering
+			\includegraphics[width=1.0\textwidth]{figs/incisive.png} %to change the size of figure modify the value of 0.4
+				\label{fig:incisive}
+\end{figure}
+
+
+
+\end{document}
