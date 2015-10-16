@@ -6,11 +6,11 @@ entity encoder IS
 	PORT(
 	in0:IN std_logic;
 	in1:IN std_logic;
-	f:OUT std_logic;
+	f:OUT std_logic
 	);
 end encoder;
 
 architecture lab1 of encoder IS
 begin
-	f <= ;
+	f <= in1 AND not in0;
 end lab1;
