@@ -14,6 +14,6 @@ end sub_borrow;
 
 architecture DataFlow of sub_borrow IS
 begin
-	diff<= ((in0 XOR in1)XOR cin);
-	bout <= (NOT cin AND NOT in1 AND in0) OR (NOT cin AND in1 AND in0) OR (NOT cin AND in1 AND in0) OR (cin AND in0 AND in1);
+	diff <= ((in0 XOR in1) XOR cin);
+	bout <= (NOT in0 AND in1) OR (NOT cin AND (in0 XOR in1) );
 end DataFlow;

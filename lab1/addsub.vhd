@@ -14,7 +14,9 @@ entity addsub IS
 end addsub;
 
 architecture lab1 of addsub IS
-begin
-	sum <= ((in1 and not in0 and not cin) or (not in1 and not in0 and cin) or (in1 and in0 and cin) or (not in1 and in0 and not cin));
-	cout <= ((not addsub and in1) or (not in1 and in0 and not cin) or (addsub and cin and in0) or (addsub and not in1 and cin));
+
+
+begin 
+	sum <= in0 XOR (in1 XOR addsub) XOR cin; 
+	cout <= (in0 AND (in1 XOR addsub)) OR (cin AND (in0 XOR (in1 XOR addsub)));
 end lab1;

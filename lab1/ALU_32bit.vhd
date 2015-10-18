@@ -17,15 +17,15 @@ ARCHITECTURE Structural OF alu_32bit IS
 	SIGNAL cin, optype : STD_LOGIC;
 	SIGNAL coutbuff: STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
-	cin <=  NOT A(0) AND B(0) WHEN opsel = "001" ELSE
-			'1' WHEN opsel = "100" OR opsel = "110" ELSE
+	cin <=  '1' WHEN opsel = "100" OR opsel = "110" OR opsel = "011" ELSE
 			'0';
 			
-	optype <= '0' WHEN opsel = "000" or opsel = "100" or opsel = "110" ELSE
-				'1';
-	G1: FOR i IN 0 TO 31 GENERATE
-		ALUX: ALU_1bit port map(A(i), B(i), mode, cin, opsel, output1(i), coutbuff(i));
-		cin <= coutbuff(i); 
+	ALUXBASE : ALU_1bit port map(A(0), B(0), mode, cin, opsel, output1(0), coutbuff(0));
+	
+	G1: FOR i IN 1 TO 31 GENERATE
+		
+		ALUX: ALU_1bit port map(A(i), B(i), mode, coutbuff(i-1), opsel, output1(i), coutbuff(i));
 	END GENERATE G1;
-	cout <= coutbuff(31); 
+	
+	cout <= coutbuff(31);	
 END Structural;

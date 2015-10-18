@@ -12,7 +12,9 @@ END mux21;
 ARCHITECTURE DataFlow OF mux21 IS
 
 BEGIN
-	Y <= (NOT A0 AND D0) OR 
-	(A0 AND D1);
+	Y <= D0 WHEN A0 = '0' ELSE
+		 D1 WHEN A0 = '1'; 
+	--(NOT A0 AND D0) OR 
+	--(A0 AND D1);
 END DataFlow;
 
