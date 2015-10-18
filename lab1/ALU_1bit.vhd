@@ -66,5 +66,6 @@ BEGIN
 			cout3 WHEN mode = '0' AND opsel = "100" ELSE
 			cout4 WHEN mode = '0' AND opsel = "101" ELSE
 			cout5 WHEN mode = '0' AND opsel = "110" ELSE
-			cout6 WHEN mode = '1' AND opsel = "101";
+			cout6 WHEN mode = '1' AND opsel = "101" ELSE
+			'0';
 END Structural; 			
