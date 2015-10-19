@@ -27,9 +27,9 @@ ARCHITECTURE Structural OF ALU_1bit IS
 		PORT (addsub, in0, in1, cin : IN STD_LOGIC; sum, cout : OUT STD_LOGIC);
 	END COMPONENT;
 	
-	COMPONENT sub_borrow
-		PORT (in0, in1, cin : IN STD_LOGIC; diff, bout : OUT STD_LOGIC);
-	END COMPONENT;
+--	COMPONENT sub_borrow
+--		PORT (in0, in1, cin : IN STD_LOGIC; diff, bout : OUT STD_LOGIC);
+--	END COMPONENT;
 	
 	SIGNAL optype, b0, art0, art1, art2, art3, art4, art5, art6, art7, log0, log1, log2, log3, log4, log5, log6, log7, cout0, cout1, cout2, cout3, cout4, cout5, cout6, choice1, choice2 : STD_LOGIC;
 

@@ -1,0 +1,33 @@
+# vsim -l simulation.log -do "sim.do" -c ALU_32bit_tb_opt 
+# Start time: 16:58:29 on Oct 18,2015
+# //  Questa Sim-64
+# //  Version 10.4c linux_x86_64 Jul 19 2015
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# Loading sv_std.std
+# Loading work.ALU_32bit_tb(fast)
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.alu_32bit(structural)#1
+# Loading work.alu_1bit(structural)#1
+# Loading ieee.numeric_std(body)
+# Loading work.addsub(lab1)#1
+# Loading work.mux81(dataflow)#1
+# Loading work.mux21(dataflow)#1
+# do sim.do
+# .
+# waveform.wlf
+# End time: 16:58:30 on Oct 18,2015, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

@@ -215,10 +215,44 @@ Resolution: During simulation phase, an error was encountered wherein an output 
 	The first step within the Architecture of the 1-bit ALU was to define the components we would be instantiating. This included: an 8 to 1 multiplexer, a 2 to 1 multiplexer, and an adder/subtracter, . After defining our signals, a WHEN statement was used to define our signal "optype." This signal was set to '0' or '1' depending on the function and set as an input for the Adder/Subtracter component. The next step was to define all 12 functions that our ALU would perform. The Adder/Subtracter component was instantiated for the Arithmetic operations. The Logic operations did not require any separate components, only simple logic gates. Two 8 to 1 multiplexers were instantiated to differentiate between the seven Arithmetic operations and five Logic operations. The two outputs were set as inputs in a 2 to 1 multiplexer, which was used to choose between the Arithmetic or Logic operation, depending on the input "mode." The output of the 2 to 1 multiplexer was set as the output of the ALU. The last step was to use a WHEN statement to chose what the carry-out would be, depending on "mode" and "opsel." A schematic created with Visio is included below.      
 \end{flushleft}
 	\centering
-			\includegraphics[scale=0.45]{Diagram}
-				\label{fig:Diagram}
+			\includegraphics[scale=0.45]{Schematic}
+				\label{fig:Schematic}
+				
+\subsection{ALU Operation Block Timings}
+\begin{center}
+\begin{tabular}{|r|c|l|}
+	\hline
+	Op Number & Op Description & Op Timing\\
+	\hline
+	Operation 1 & Add & 15.6 ns (Cout = 2 XOR, 2 AND, 1 OR)\\
+	Operation 2 & Sub with borrowed carry & 15.6 ns (Cout = 2 XOR, 2 AND, 1 OR)\\
+	Operation 3 & Move & Delay due to wire (No logic gates)\\
+	Operation 4 & Sub & 15.6 ns (Cout = 2 XOR, 2 AND, 1 OR)\\
+	Operation 5 & Increment & 15.6 ns (Cout = 2 XOR, 2 AND, 1 OR)\\
+	Operation 6 & Decrement & 15.6 ns (Cout = 2 XOR, 2 AND, 1 OR)\\
+	Operation 7 & Add and Increment & 15.6 ns (Cout = 2 XOR, 2 AND, 1 OR)\\
+	Operation 8 & AND & 2.4 ns (1 AND)\\
+	Operation 9 & OR & 2.4 ns (1 OR)\\
+	Operation 10 & XOR & 4.2 ns (1 XOR)\\
+	Operation 11 & Compliment & 1 ns (1 NOT)\\
+	Operation 12 & Shift Left & Delay due to wire (No logic gates)\\
+	\hline
+\end{tabular}
+\end{center}
 
 \section{Waveform Screenshots}
+
+\subsection{Arithmetic Operations}
+\begin{flushleft}
+In every round of Arithmetic, the following operations are used according to the input "opsel": \\ [15pt]
+1. At 3'h0, Add A + B\\ 
+2. At 3'h1, Subtract A - B with a borrowed carry\\
+3. At 3'h2, Move A\\
+4. At 3'h3, Subtract A - B\\
+5. At 3'h4, Increment A by 1\\
+6. At 3'h5, Decrement A by 1\\
+7. At 3'h6, Add A + B and increment by 1    
+\end{flushleft}
 
 \subsection{Arithmetic Round 1}
 
@@ -252,16 +286,15 @@ B = 32'b10101010101010101010101010101010
 \raggedright A = 32'b11111111111111111111111111111111\\
 B = 32'b01010101010101010101010101010101
 
-\subsection{Arithmetic Operations}
+\subsection{Logic Operations}
 \begin{flushleft}
-In every round of Arithmetic, the following operations are used according to the input "opsel": \\ [15pt]
-1. At 3'h0, Add A + B\\ 
-2. At 3'h1, Subtract A - B with a borrowed carry\\
-3. At 3'h2, Move A\\
-4. At 3'h3, Subtract A - B\\
-5. At 3'h4, Increment A by 1\\
-6. At 3'h5, Decrement A by 1\\
-7. At 3'h6, Add A + B and increment by 1    
+	In every round of Logic, the following operations are used according to the input "opsel": \\ [15pt]
+	1. At 3'h0, A AND B\\ 
+	2. At 3'h1, A OR B\\
+	3. At 3'h2, A XOR B\\
+	4. At 3'h3, NOT A\\
+	5. At 3'h5, A 32-bit Shift Left (Logic) \\
+    
 \end{flushleft}
 
 \subsection{Logic Round 1}
@@ -296,14 +329,4 @@ B = 32'b10101010101010101010101010101010
 \raggedright A = 32'b11111111111111111111111111111111\\
 B = 32'b01010101010101010101010101010101
 
-\subsection{Logic Operations}
-\begin{flushleft}
-	In every round of Logic, the following operations are used according to the input "opsel": \\ [15pt]
-	1. At 3'h0, A AND B\\ 
-	2. At 3'h1, A OR B\\
-	3. At 3'h2, A XOR B\\
-	4. At 3'h3, NOT A\\
-	5. At 3'h5, A 32-bit Shift Left (Logic) \\
-    
-\end{flushleft}
 \end{document}
