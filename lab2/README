@@ -1,0 +1,4 @@
+source setup.csh
+source pre_compile.csh
+source cmd
+

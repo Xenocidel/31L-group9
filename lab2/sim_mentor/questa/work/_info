@@ -1,0 +1,62 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/users/ugrad2/2012/spring/pooriam/files/lecture-5/sim
+vdpi_example
+Z0 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+DXx4 work 14 tb_top_sv_unit 0 22 YAUD48VI6RPYZJ`jRnJAO0
+VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 ?gbkfjP3G3:z;lJBad;5=2
+IQ=IRJY6>G]_jI6QTP@Z9W3
+!s105 tb_top_sv_unit
+S1
+Z1 d/users/ugrad2/2015/spring/aliao4/eecs31l/lecture-5/lecture-5/sim
+Z2 w1445909010
+Z3 8/users/ugrad2/2015/spring/aliao4/eecs31l/lecture-5/lecture-5/verif/tb_top.sv
+Z4 F/users/ugrad2/2015/spring/aliao4/eecs31l/lecture-5/lecture-5/verif/tb_top.sv
+L0 7
+Z5 OL;L;10.4c;61
+Z6 !s108 1445913157.000000
+Z7 !s107 /users/ugrad2/2015/spring/aliao4/eecs31l/lecture-5/lecture-5/verif/tb_top.sv|
+Z8 !s90 -sv|/users/ugrad2/2015/spring/aliao4/eecs31l/lecture-5/lecture-5/verif/tb_top.sv|
+!i113 0
+Z9 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Ttb_top
+!s110 1445913188
+Vj<5:ZRgPI=S2EN`1^ECX92
+04 11 4 work dpi_example fast 0
+o+acc
+ntb_top
+OL;O;10.4c;61
+Xtb_top_sv_unit
+R0
+VYAUD48VI6RPYZJ`jRnJAO0
+r1
+!s85 0
+31
+!i10b 1
+!s100 JM25_HlND77j6@HUQ1D^k3
+IYAUD48VI6RPYZJ`jRnJAO0
+!i103 1
+S1
+R1
+R2
+R3
+R4
+L0 4
+R5
+R6
+R7
+R8
+!i113 0
+R9
