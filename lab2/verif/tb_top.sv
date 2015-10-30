@@ -17,7 +17,7 @@ module dpi_example ();
    logic   [14:0] exp_data_out;
    logic   [p_size-1:0] parity_out;
 
-   logic   [size-1:0] decoder_data_out;
+   logic   [10:0] decoder_data_out;
 
    bit clk;
 
@@ -43,7 +43,7 @@ module dpi_example ();
 
    //compare expected output and encoder output
    always @(negedge clk) begin
-       if (exp_data_out = rtl_data_out) begin
+       if (exp_data_out == rtl_data_out) begin
            $display("%t: PASS, Encoder Input: %b, Output (Expected/RTL) (%b/%b)", $time, $rtl_data_in, $exp_data_out, $rtl_data_out);
        end else begin
            $display("%t: FAIL, Encoder Input: %b, Output (Expected/RTL) (%b/%b)", $time, $rtl_data_in, $exp_data_out, $rtl_data_out);
@@ -51,12 +51,12 @@ module dpi_example ();
    end
    //compare original data and decoder output
    always @(decoder_data_out) begin
-       if (decoder_data_out = rtl_data_in) begin
+       if (decoder_data_out == rtl_data_in) begin
            $display("%t: PASS, Decoder Input: %b, Output (Expected/RTL) (%b/%b)", $time, $exp_data_out, $rtl_data_in, $decoder_data_out);
        end else begin
            $display("%t: FAIL, Decoder Input: %b, Output (Expected/RTL) (%b/%b)", $time, $exp_data_out, $rtl_data_in, $decoder_data_out);
-       end 
-
+       end
+	end
  
 endmodule
 
