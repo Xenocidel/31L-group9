@@ -34,7 +34,7 @@ module dpi_example ();
       rtl_data_in = $urandom % 2048; //generate 11 random bits
       $display("rtl_in: %b", rtl_data_in);      //display the random data 
       encoder(rtl_data_in, rtl_data_out, parity_out); // feed the data to c programming
-	  exp_data_out = {rtl_data_out[13:6], parity_out[3], rtl_data_out[5:1], parity_out[2], rtl_data_out[0], parity_out[1:0]}
+	  exp_data_out = {rtl_data_out[13:6], parity_out[3], rtl_data_out[5:1], parity_out[2], rtl_data_out[0], parity_out[1:0]};
    end
    
    // generate the rtl output
