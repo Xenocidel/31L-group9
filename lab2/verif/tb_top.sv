@@ -38,8 +38,8 @@ module dpi_example ();
    end
    
    // generate the rtl output
-   ham1511_encode L1( .d(rtl_data_in), .o(rtl_data_out));  // make sure you are using your entity name and port name
-   ham1511_decode L2( .i(exp_data_out), .out_vec(decoder_data_out) );
+   ham1511_encode L1( .data_in(rtl_data_in), .data_out(rtl_data_out));  // make sure you are using your entity name and port name
+   ham1511_decode L2( .data_in(exp_data_out), .data_out(decoder_data_out) );
 
    //compare expected output and encoder output
    always @(negedge clk) begin
