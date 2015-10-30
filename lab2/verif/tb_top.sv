@@ -1,7 +1,7 @@
 
 /* Example 4.12 */
 
-import "DPI-C" context encoder= function void encoder(input int data, output logic [10:0] outData,  output int parity );
+import "DPI-C" context encoder= function void encoder(input int data, output logic [0:10] outData,  output int parity );
 
 
 module dpi_example ();
@@ -12,12 +12,12 @@ module dpi_example ();
    logic   dpi_p_out [0:p_size-1] ;
 
    logic   dpi_in [0:size-1] ;
-   logic   [10:0] rtl_data_in;
-   logic   [14:0] rtl_data_out;
-   logic   [14:0] exp_data_out;
-   logic   [p_size-1:0] parity_out;
+   logic   [0:10] rtl_data_in;
+   logic   [0:14] rtl_data_out;
+   logic   [0:14] exp_data_out;
+   logic   [0:p_size-1] parity_out;
 
-   logic   [size-1:0] decoder_data_out;
+   logic   [0:size-1] decoder_data_out;
 
    bit clk;       
 
@@ -34,7 +34,7 @@ module dpi_example ();
       rtl_data_in = $urandom % 2048; //generate 11 random bits
       $display("rtl_in: %b", rtl_data_in);      //display the random data 
       encoder(rtl_data_in, rtl_data_out, parity_out); // feed the data to c programming
-	  exp_data_out = parity_out[0:2], rtl_data_out[0:1], parity_out[3], rtl_data_out[2:6], parity_out[4], rtl_data_out[7:14] //might be reversed due to it being defined as DOWNTO, please check!
+	  exp_data_out = parity_out[0:2], rtl_data_out[0:1], parity_out[3], rtl_data_out[2:6], parity_out[4], rtl_data_out[7:14]
    end
    
    // generate the rtl output
