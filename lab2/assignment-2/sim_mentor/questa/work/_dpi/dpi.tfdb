@@ -1,0 +1,19 @@
+VERSION 10 1 2
+SYM_BEGIN 5
+0 7
+encoder
+1 4
+data
+3 6
+parity
+4 85
+/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/verif/tb_top.sv
+2 7
+outData
+SYM_END
+TYPEDEF_BEGIN 0
+TYPEDEF_END 
+TF_BEGIN 1
+0 206 
+0 -1 -1 6 3 1 0 0x0 0 0x1 0 1 0x0 1 0 12 0 4294967295 4 16427 32 0 31 31 0 32 0x1 1 0 2 0x0 1 0 12 0 4294967295 4 16427 32 0 31 31 0 32 0x1 2 0 3 0x0 1 0 12 0 4294967295 4 16427 32 0 31 31 0 32 0x1 2 1 4 4  
+TF_END 
