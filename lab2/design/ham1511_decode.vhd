@@ -50,7 +50,7 @@ ARCHITECTURE Structural OF ham1511_decode IS
 		  data_in(15);
 	err_loc <= conv_integer(p1)*1 + conv_integer(p2)*2 + conv_integer(p3)*4 + conv_integer(p4)*8;
 	data_temp <= data_in(3) & data_in(5 TO 7) & data_in(9 TO 15);
-	data_out <= data_temp WHEN err_loc=0 OR err_loc=1 OR err_loc=2 OR err_loc=4 OR err_loc=8 ELSE
+	data_out <= data_temp(1 TO 11) WHEN err_loc=0 OR err_loc=1 OR err_loc=2 OR err_loc=4 OR err_loc=8 ELSE
 				data_temp(1 TO 10) & not(data_temp(11)) WHEN err_loc=11 ELSE
 				data_temp(1 TO err_loc-1) & not(data_temp(err_loc)) & data_temp(err_loc+1 TO 11);
 	
