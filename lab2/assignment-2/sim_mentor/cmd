@@ -1,4 +1,0 @@
-source comp_model.sh
-vlog -sv $verif/tb_top.sv
-vopt +acc dpi_example -o tb_top
-vsim -c tb_top -sv_lib $sim/so_libs/TEST -do sim.do
