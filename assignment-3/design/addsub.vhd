@@ -23,9 +23,9 @@ begin
 		if carry = OTHERS=>'0' then --if no wrap-around needed
 			sum <= ((in1 and not in0 and not cin) or (not in1 and not in0 and cin) or (in1 and in0 and cin) or (not in1 and in0 and not cin));
 		elsif addsub=1 then --wrap-around to negative if adding
-			sum <= OTHERS=>'1'
+			sum <= (OTHERS=>'1');
 		else --wrap-around to 0 if subtracting
-			sum <= OTHERS=>'0'
+			sum <= (OTHERS=>'0');
 		end if
 	end
 end Structural;
