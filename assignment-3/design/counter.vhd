@@ -18,4 +18,24 @@ ARCHITECTURE Structural OF counter IS
 	
 	BEGIN
 	
+	SIGNAL tmp: std_logic := 0;
+	
+	process(clk, rst_s)
+		--if rst_s is 1
+		--	set dout to 0
+		--else proceed to increment
+		--	if tmp is 0
+		--		if preload is 0
+		--			set din to 0
+		--		if asc is 1
+		--			set dout to step
+		--		else
+		--			use addsub to set dout to din-step
+		--	else
+		--		if asc is 1
+		--			use addsub to set dout to din+step
+		--		if asc is 0
+		--			use addsub to set dout to din-step
+		--set tmp to 1
+	
 END Structural;
