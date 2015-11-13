@@ -26,9 +26,9 @@ BEGIN
 				ELSIF (preload = '1') THEN										
 					temp := din;												--Load din into counter register
 				ELSIF (asc = '1') THEN											
-					temp := std_logic_vector( unsigned(temp) + 1);				--Count up
+					temp := std_logic_vector( to_integer(unsigned(temp)) + STEP);				--Count up
 				ELSIF (asc = '0') THEN											
-					temp := std_logic_vector( unsigned(temp) - 1);				--Count down
+					temp := std_logic_vector( to_integer(unsigned(temp)) - STEP);				--Count down
 				END IF;
 			END IF;
 			dout <= temp;
