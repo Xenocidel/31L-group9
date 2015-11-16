@@ -15,7 +15,7 @@ ENTITY counter IS
 	);
 END counter;
 
-ARCHITECTURE behavior OF counter IS
+ARCHITECTURE Behavioral OF counter IS
 BEGIN
 		PROCESS(clk, rst_s, asc, preload)
 			VARIABLE temp: STD_LOGIC_VECTOR(NBIT-1 DOWNTO 0);
@@ -33,4 +33,4 @@ BEGIN
 			END IF;
 			dout <= temp;
 		END PROCESS;
-END behavior;		
+END Behavioral;		

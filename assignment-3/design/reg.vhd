@@ -15,7 +15,7 @@ ENTITY reg IS
 		);
 END reg;
 
-ARCHITECTURE Structural OF reg IS
+ARCHITECTURE Behavioral OF reg IS
 	
 	BEGIN
 		PROCESS (clk, rst_a)
@@ -38,4 +38,4 @@ ARCHITECTURE Structural OF reg IS
 				end if;
 			end	if;
 		end process;
-END Structural;
+END Behavioral;
