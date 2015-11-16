@@ -27,25 +27,27 @@ module counter_tb2;
 		#20;
 		$display("Output: %b", dout);
 		//Round 3
-		preload = 1'b1; //Load in a random number and Ascend for two cycles
-		asc = 1'b1;
 		din = $unsigned($random);
+		preload = 1'b1; //Load in a random number and Ascend for two cycles
+		#10
+		preload = 1'b0;
+		asc = 1'b1;
 		#20;
 		$display("Output: %b", dout);
 		//Round 4
-		preload = 1'b0; //Descend for two cycles back to original loaded din
-		asc = 1'b0; 
+		asc = 1'b0; //Descend for two cycles back to original loaded din
 		#20;
 		$display("Output: %b", dout);
 		//Round 5
-		preload = 1'b1; //Load in a random number and Ascend for two cycles
-		asc = 1'b1;
 		din = $unsigned($random);
+		preload = 1'b1; //Load in a random number and Ascend for two cycles
+		#10
+		preload = 1'b0;
+		asc = 1'b1;
 		#20;
 		$display("Output: %b", dout);
 		//Round 6
-		preload = 1'b0; //Test synchronous reset 
-		rst_s = 1'b1;
+		rst_s = 1'b1; //Test synchronous reset 
 		#10
 		$display("Output: %b", dout);
       $finish;

@@ -17,7 +17,7 @@ END counter;
 
 ARCHITECTURE Behavioral OF counter IS
 BEGIN
-		PROCESS(clk, rst_s, asc, preload)
+		PROCESS(clk)
 			VARIABLE temp: STD_LOGIC_VECTOR(NBIT-1 DOWNTO 0);
 		BEGIN
 			IF (clk'EVENT AND clk = '1') THEN
