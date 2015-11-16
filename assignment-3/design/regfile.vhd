@@ -18,19 +18,32 @@ ENTITY regfile IS
 END regfile ;
 
 ARCHITECTURE Structural OF regfile IS
+	
+	SIGNAL dec_out : std_logic_vector(2**NSEL-1 downto 0);
+	type reg_to_array is array (2**NSEL-1 downto 0) of std_logic_vector(NBIT-1 downto 0); 
+	SIGNAL mux_in : reg_to_array;
 
-	component REG
+	component reg
 	port (clk, rst_a, rst_s, inc, we: IN std_logic ;
 		din : IN std_logic_vector (NBIT -1 downto 0);
 		dout : OUT std_logic_vector (NBIT -1 downto 0));
 	end component;
 	
+	component dec
+	port (waddr: IN std_logic_vector(NSEL-1 downto 0);
+		  dec_out: OUT std_logic_vector(2**NBIT-1 downto 0));
+	
+	reg_array: FOR i in (2**NSEL-1 downto 0) GENERATE
+		REG(i): reg port map (clk, '0', rst_s, dec_out(i) AND we, wdata, mux_in(i));
+	end generate
+	
 	BEGIN
 	
 	--Reading
-	R1: REG port map (clk, '0', rst_s, we, raddr_1, rdata_1);
-	R2: REG port map (clk, '0', rst_s, we, raddr_2, rdata_2);
+	
 	
 	--Writing
+	
+	
 	
 END Structural;
