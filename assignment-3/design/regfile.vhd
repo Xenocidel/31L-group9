@@ -32,6 +32,13 @@ ARCHITECTURE Structural OF regfile IS
 	component dec
 	port (waddr: IN std_logic_vector(NSEL-1 downto 0);
 		  dec_out: OUT std_logic_vector(2**NBIT-1 downto 0));
+	end component;
+		  
+	component mux
+	PORT (input : IN reg_to_array;
+		opsel : IN STD_LOGIC_VECTOR (NSEL-1 DOWNTO 0);
+		Y : OUT std_logic_vector (NSEL-1 DOWNTO 0));
+	end component;
 	
 	reg_array: FOR i in (2**NSEL-1 downto 0) GENERATE
 		REG(i): reg port map (clk, '0', rst_s, dec_out(i) AND we, wdata, mux_in(i));
@@ -39,10 +46,11 @@ ARCHITECTURE Structural OF regfile IS
 	
 	BEGIN
 	
-	--Reading
-	
-	
 	--Writing
+	
+	--Reading
+	M1: mux port map (reg_array, raddr_1, rdata_1);
+	M2: mux port map (reg_array, raddr_2, rdata_2);
 	
 	
 	
