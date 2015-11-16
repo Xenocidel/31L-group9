@@ -1,0 +1,138 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/sim
+vdpi_example
+Z1 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+DXx4 work 14 tb_top_sv_unit 0 22 D<AAHB:oh;n`]6lf8]f?T3
+VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 c5F9]31o0?9b^]0>[n99X1
+InEPkih65WMT9dPEmJ=>Vg1
+!s105 tb_top_sv_unit
+S1
+R0
+Z2 w1446354671
+Z3 8/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/verif/tb_top.sv
+Z4 F/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/verif/tb_top.sv
+L0 7
+Z5 OL;L;10.4c;61
+Z6 !s108 1446359522.000000
+Z7 !s107 /users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/verif/tb_top.sv|
+Z8 !s90 -sv|/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/verif/tb_top.sv|
+!i113 0
+Z9 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Eham1511_decode
+Z10 w1446359510
+Z11 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z12 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z13 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z14 8../design/ham1511_decode.vhd
+Z15 F../design/ham1511_decode.vhd
+l0
+L5
+V7@cCXZNGz1^lD4lAmn]?N1
+!s100 ZjMNRV9=nL[L6UVb7_=?S0
+Z16 OL;C;10.4c;61
+32
+Z17 !s110 1446359513
+!i10b 1
+Z18 !s108 1446359513.000000
+Z19 !s90 -f|rtl.cfg|
+Z20 !s107 ../design/ham1511_decode.vhd|../design/ham1511_encode.vhd|
+!i113 0
+Z21 tExplicit 1
+Astructural
+R11
+R12
+R13
+DEx4 work 14 ham1511_decode 0 22 7@cCXZNGz1^lD4lAmn]?N1
+l18
+L13
+VhG4>BBa=POONZLmV:hFh20
+!s100 >;GBc8FUD=HZnjKmTY=BZ2
+R16
+32
+R17
+!i10b 1
+R18
+R19
+R20
+!i113 0
+R21
+Eham1511_encode
+Z22 w1446353716
+R12
+R13
+R0
+Z23 8../design/ham1511_encode.vhd
+Z24 F../design/ham1511_encode.vhd
+l0
+L4
+VUGoIRMTY:7Q=E5F[9iVG_2
+!s100 Rjf3NbWFXdY5z[a38ZZ1n2
+R16
+32
+R17
+!i10b 1
+R18
+R19
+R20
+!i113 0
+R21
+Astructural
+R12
+R13
+DEx4 work 14 ham1511_encode 0 22 UGoIRMTY:7Q=E5F[9iVG_2
+l14
+L12
+Vf?Wf2d^1;0k_KTN2HG6Nf2
+!s100 oGHKRGeQF>R5SF7LfhHjl2
+R16
+32
+R17
+!i10b 1
+R18
+R19
+R20
+!i113 0
+R21
+Ttb_top
+!s110 1446359523
+V6:`MiLoo:7;6Ab??M]FTH2
+04 11 4 work dpi_example fast 0
+o+acc
+ntb_top
+OL;O;10.4c;61
+Xtb_top_sv_unit
+R1
+VD<AAHB:oh;n`]6lf8]f?T3
+r1
+!s85 0
+31
+!i10b 1
+!s100 XlLRg2F57DdM>dVbSigl92
+ID<AAHB:oh;n`]6lf8]f?T3
+!i103 1
+S1
+R0
+R2
+R3
+R4
+L0 4
+R5
+R6
+R7
+R8
+!i113 0
+R9
