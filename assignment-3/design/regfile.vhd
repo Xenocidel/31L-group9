@@ -45,7 +45,7 @@ ARCHITECTURE Structural OF regfile IS
 	--Writing
 	decode: decoder port map (waddr, dec_out);
 	reg_gen: FOR i in 2**NSEL-1 downto 0 GENERATE
-		reg_array(i): reg port map (clk, '0', rst_s, dec_out(i) AND we, wdata, mux_in(i));
+		reg_array(i): reg port map (clk, '0', rst_s, '0', dec_out(i) AND we, wdata, mux_in(i));
 	end generate;
 	
 	--Reading
