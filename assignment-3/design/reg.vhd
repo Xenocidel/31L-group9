@@ -1,5 +1,6 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
+USE ieee.numeric_std.ALL;
 
 ENTITY reg IS
 	GENERIC ( NBIT : INTEGER :=32);
@@ -18,19 +19,23 @@ ARCHITECTURE Structural OF reg IS
 	
 	BEGIN
 		PROCESS (clk, rst_a)
-		VARIABLE temp: std_logic_vector(NBIT-1 downto 0); 
+		VARIABLE temp, last_out: std_logic_vector(NBIT-1 downto 0); 
 		BEGIN
 			if rst_a='1' then
-				dout <= OTHERS=>'0';
+				dout <= (OTHERS=>'0');
+				last_out:=(OTHERS=>'0');
 			elsif clk'event and clk='1' then
 				if rst_s='1' then
-					dout <= OTHERS=>'0';
+					dout <= (OTHERS=>'0');
+					last_out:=(OTHERS=>'0');
 				elsif inc='1' and we='1' then
-					temp:=dout+'1';
+					temp:=std_logic_vector(unsigned(last_out)+1);
 					dout <= temp;
+					last_out:= din;
 				elsif we='1' then
 					dout <= din;
-				end if
-			end	if
-	
+					last_out:= din;
+				end if;
+			end	if;
+		end process;
 END Structural;

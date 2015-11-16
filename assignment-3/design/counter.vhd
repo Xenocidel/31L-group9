@@ -21,14 +21,14 @@ BEGIN
 			VARIABLE temp: STD_LOGIC_VECTOR(NBIT-1 DOWNTO 0);
 		BEGIN
 			IF (clk'EVENT AND clk = '1') THEN
-				IF (rst_s = '1')												
+				IF (rst_s = '1') THEN												
 					temp := (OTHERS => '0');									--Reset the counter
 				ELSIF (preload = '1') THEN										
 					temp := din;												--Load din into counter register
 				ELSIF (asc = '1') THEN											
-					temp := std_logic_vector( to_integer(unsigned(temp)) + STEP);				--Count up
+					temp := std_logic_vector((unsigned(temp)) + to_unsigned(STEP, 8)); --Count up
 				ELSIF (asc = '0') THEN											
-					temp := std_logic_vector( to_integer(unsigned(temp)) - STEP);				--Count down
+					temp := std_logic_vector((unsigned(temp)) - to_unsigned(STEP, 8));				--Count down
 				END IF;
 			END IF;
 			dout <= temp;
