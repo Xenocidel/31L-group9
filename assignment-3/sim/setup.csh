@@ -1,4 +1,3 @@
-
 #setenv PATH /ecelib/linware/mentor/quest/questasim/v10.3b/:/ecelib/linware/mentor/quest/questasim/v10.3b/bin/:$PATH
 setenv PATH /home/linware/mentor/questa/questasim/:/home/linware/mentor/questa/questasim/bin/:$PATH
 
@@ -15,6 +14,8 @@ setenv QUESTA_HOME /home/linware/mentor/questa/questasim/
 setenv QUESTA_UVM_HOME $QUESTA_HOME/verilog_src/questa_uvm_pkg-1.2
 setenv UVM_HOME $QUESTA_HOME/verilog_src/uvm-1.1d
 
+
+
 cd ..
 setenv sim `pwd`/sim
 
@@ -24,3 +25,4 @@ setenv verif `pwd`/verif
 
 cd $sim
 
+setenv MGLS_LICENSE_FILE /ecelib/eceware/licenses/mentor2
