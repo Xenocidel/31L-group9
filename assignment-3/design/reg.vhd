@@ -29,7 +29,7 @@ ARCHITECTURE Structural OF reg IS
 					dout <= (OTHERS=>'0');
 					last_out:=(OTHERS=>'0');
 				elsif inc='1' and we='1' then
-					temp:=std_logic_vector(unsigned(last_out)+1);
+					temp:=std_logic_vector(unsigned(last_out)+to_unsigned(1, NBIT));
 					dout <= temp;
 					last_out:= din;
 				elsif we='1' then
