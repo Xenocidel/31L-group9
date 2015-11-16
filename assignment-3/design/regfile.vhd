@@ -29,21 +29,20 @@ ARCHITECTURE Structural OF regfile IS
 		dout : OUT std_logic_vector (NBIT -1 downto 0));
 	end component;
 	
-	component dec
-	port (waddr: IN std_logic_vector(NSEL-1 downto 0);
-		  dec_out: OUT std_logic_vector(2**NBIT-1 downto 0));
+	component decoder
+	port (input: IN std_logic_vector(NSEL-1 downto 0);
+		  output: OUT std_logic_vector(2**NBIT-1 downto 0));
+	end component
 	
+	BEGIN
+	
+	--Writing
+	decode: decoder port map (waddr, dec_out);
 	reg_array: FOR i in (2**NSEL-1 downto 0) GENERATE
 		REG(i): reg port map (clk, '0', rst_s, dec_out(i) AND we, wdata, mux_in(i));
 	end generate
 	
-	BEGIN
-	
 	--Reading
-	
-	
-	--Writing
-	
 	
 	
 END Structural;
