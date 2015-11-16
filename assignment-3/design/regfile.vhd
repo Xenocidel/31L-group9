@@ -30,9 +30,15 @@ ARCHITECTURE Structural OF regfile IS
 	end component;
 	
 	component decoder
-	port (input: IN std_logic_vector(NSEL-1 downto 0);
-		  output: OUT std_logic_vector(2**NBIT-1 downto 0));
-	end component
+	port (waddr: IN std_logic_vector(NSEL-1 downto 0);
+		  dec_out: OUT std_logic_vector(2**NBIT-1 downto 0));
+	end component;
+		  
+	component mux
+	PORT (input : IN reg_to_array;
+		opsel : IN STD_LOGIC_VECTOR (NSEL-1 DOWNTO 0);
+		Y : OUT std_logic_vector (NSEL-1 DOWNTO 0));
+	end component;
 	
 	BEGIN
 	
@@ -43,6 +49,9 @@ ARCHITECTURE Structural OF regfile IS
 	end generate
 	
 	--Reading
+	M1: mux port map (reg_array, raddr_1, rdata_1);
+	M2: mux port map (reg_array, raddr_2, rdata_2);
+	
 	
 	
 END Structural;
