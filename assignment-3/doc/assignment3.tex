@@ -64,16 +64,31 @@
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
 
-\section{Creating the Hamming Encoder}
+\section{Creating the Register}
 
 \subsection{Architecture}
 \begin{flushleft}
-	Our design for the 11 to 15 Hamming Encoder mainly consisted of multiple XOR statements and the concatenation of our input data with parity bits. One input and output were defined as "11 DOWNTO 1," and "15 DOWNTO 1" respectively. Originally we had defined the vectors using "TO", so position 1 would be the most significant bit. Upon seeing the C Reference Model, we changed the input and output to "DOWNTO" in order to remain consistent and obtain the correct output. In the Architecture, the four parity bits were defined as signals. Each parity bit was set to the result of several input bits being XOR with each other. In order to determine which input bits were used for each parity, we followed the chart given through the lecture. The final statement set the output equal to the concatenation of the input bits and parity bits. The parity bits were implemented from the right side of the output vector, starting with the least significant bit position. \\[20pt]
+	Our design for the Register consisted of a sequential block with a sensitivity list responding to the clock and asynchronous reset inputs. The precedence for updating the register's output value is as follows:
+	\begin{enumerate}
+		\item Asynchronous Reset
+		\item Synchronous Reset
+		\item Incrementation
+		\item Parallel Input
+	\end{enumerate}
+	To increment the value, the register was designed to hold the last value outputted in a variable. This variable would then be added to 1 in unsigned format, then converted to a logic vector to be outputted. \\[20pt]
 \end{flushleft}
 
 
 %------------------------------------------------
-\section{Creating the Hamming Decoder}
+\section{Creating the Register File}
+
+\subsection{Architecture}
+\begin{flushleft}
+	Our design for the 15 to 11 Hamming Decoder followed a similar structure as our encoder, but also included the ability to detect and fix a single bit error in the input. This time, the input was 15 bits and the output was 11 bits, which is the opposite of the encoder. Once again, we had to change the vectors to "DOWNTO." In the Architecture, we defined the parity bits once again, as well as a "data\_temp" and "syndrome" signal. These two new signals were 15 and 4 bit vectors respectively. Each parity bit was set to the result of multiple XOR statements using the input bits, similar to the encoder. The signal "syndrome" was set to the concatenation of our parity bits, with the 4th parity being the most significant bit. This vector helped us locate an error, so that we could invert that particular bit. Our signal "data\_temp" was set to equal 12 possible cases, depending on the value of "syndrome." The first case set "data\_temp" equal to the input when "syndrome" was locating an error in one of the parity bits or there was no error at all. The rest of the cases set "data\_temp" equal to the input, except with the single-bit error inverted. The output of the encoder was set to "data\_temp" with all of the parity bits removed, so that the final result would be the 11-bit input that was initially fed to the encoder. \\[20pt]      
+\end{flushleft}
+
+%------------------------------------------------
+\section{Creating the Counter}
 
 \subsection{Architecture}
 \begin{flushleft}

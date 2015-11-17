@@ -31,7 +31,7 @@ ARCHITECTURE Behavioral OF reg IS
 				elsif inc='1' and we='1' then
 					temp:=std_logic_vector(unsigned(last_out)+to_unsigned(1, NBIT));
 					dout <= temp;
-					last_out:= din;
+					last_out:= temp;
 				elsif we='1' then
 					dout <= din;
 					last_out:= din;
