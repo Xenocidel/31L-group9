@@ -1,0 +1,11 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.All;
+
+ENTITY regfile is --three-port register file
+	PORT(
+		clk: IN STD_LOGIC;
+		we3: IN STD_LOGIC;
+		ra1, ra2, wa3: IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+		wd3: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		rd1, rd2: OUT STD_LOGIC_VECTOR(31 DOWNTO 0));
+END regfile;
