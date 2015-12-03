@@ -1,0 +1,3 @@
+../design/reg_N.vhd
+../design/reg_file.vhd
+../design/counter.vhd

@@ -1,0 +1,419 @@
+# vsim -l simulation.log -do "sim.do" -c reg_tb_opt 
+# Start time: 08:16:29 on Nov 22,2015
+# //  Questa Sim-64
+# //  Version 10.4c linux_x86_64 Jul 19 2015
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# Loading sv_std.std
+# Loading work.reg_tb(fast)
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.reg_n(rtl)#1
+# Loading work.regfile(structural)#1
+# Loading work.counter(behavioral)#1
+# do sim.do
+# .
+# waveform.wlf
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: .reg_tb.RF1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: .reg_tb.RF1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: .reg_tb.RF1
+#                   50: 
+# 
+# Register Input: 11111011101101010010100110000110, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 0
+# Inc: 0
+# 
+#                   50: 
+# 
+# Register File Input: 00001111101101000000000000101000, Clock: 1, Reset_S: 0, W_Enable: 0
+# 
+# R1_addr: 000, R2_addr: 011, W_addr: 010
+# 
+#                   50: 
+# 
+# Counter Input: 10001110011110011110010010101010, Clock: 1, Reset_S: 0, Asc: 1, Preload: 0
+# 
+#                   50: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000001/00000000000000000000000000000001)
+# 
+#                  150: 
+# 
+# Register Input: 01001111110001101010000110001100, Clock: 1, Reset_A: 0, Reset_S: 1, W_Enable: 0
+# Inc: 0
+# 
+#                  150: 
+# 
+# Register File Input: 01011011111011001011011111000100, Clock: 1, Reset_S: 0, W_Enable: 1
+# 
+# R1_addr: 000, R2_addr: 001, W_addr: 000
+# 
+#                  150: 
+# 
+# Counter Input: 11111011101100111000000010110111, Clock: 1, Reset_S: 1, Asc: 1, Preload: 0
+# 
+#                  150: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000010/00000000000000000000000000000010)
+# 
+#                  250: 
+# 
+# Register Input: 10101101010110010001001001110011, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 0
+# Inc: 1
+# 
+#                  250: 
+# 
+# Register File Input: 01100010010101011010011101011101, Clock: 1, Reset_S: 0, W_Enable: 1
+# 
+# R1_addr: 000, R2_addr: 010, W_addr: 000
+# 
+#                  250: 
+# 
+# Counter Input: 00100000001111010001111000010011, Clock: 1, Reset_S: 0, Asc: 0, Preload: 0
+# 
+#                  250: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000001/00000000000000000000000000000001)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (01011011111011001011011111000100/01011011111011001011011111000100) 
+# R2_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000001/00000000000000000000000000000001)
+# 
+#                  350: 
+# 
+# Register Input: 10000010101101111001111100111100, Clock: 1, Reset_A: 0, Reset_S: 1, W_Enable: 0
+# Inc: 1
+# 
+#                  350: 
+# 
+# Register File Input: 11000010111111101110001110110111, Clock: 1, Reset_S: 0, W_Enable: 1
+# 
+# R1_addr: 011, R2_addr: 000, W_addr: 100
+# 
+#                  350: 
+# 
+# Counter Input: 01110111100101000110110000011011, Clock: 1, Reset_S: 1, Asc: 0, Preload: 0
+# 
+#                  350: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (01100010010101011010011101011101/01100010010101011010011101011101)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+#                  450: 
+# 
+# Register Input: 00010001100001111011101111000000, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 1
+# Inc: 0
+# 
+#                  450: 
+# 
+# Register File Input: 01010111111100111010000000101000, Clock: 1, Reset_S: 0, W_Enable: 0
+# 
+# R1_addr: 000, R2_addr: 100, W_addr: 010
+# 
+#                  450: 
+# 
+# Counter Input: 10010100010111011110000000101010, Clock: 1, Reset_S: 0, Asc: 0, Preload: 0
+# 
+#                  450: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (00010001100001111011101111000000/00010001100001111011101111000000)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (01100010010101011010011101011101/01100010010101011010011101011101) 
+# R2_Output (Expected/RTL) (11000010111111101110001110110111/11000010111111101110001110110111)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (11111111111111111111111111111111/11111111111111111111111111111111)
+# 
+#                  550: 
+# 
+# Register Input: 11100110110011011100110011110010, Clock: 1, Reset_A: 0, Reset_S: 1, W_Enable: 1
+# Inc: 0
+# 
+#                  550: 
+# 
+# Register File Input: 10000100001010011000011011101001, Clock: 1, Reset_S: 0, W_Enable: 1
+# 
+# R1_addr: 010, R2_addr: 101, W_addr: 000
+# 
+#                  550: 
+# 
+# Counter Input: 11011011000100000100001111100001, Clock: 1, Reset_S: 1, Asc: 0, Preload: 1
+# 
+#                  550: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (11011011000100000100001111100001/11011011000100000100001111100001)
+# 
+#                  650: 
+# 
+# Register Input: 10110100011100101011110100000111, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 1
+# Inc: 1
+# 
+#                  650: 
+# 
+# Register File Input: 10010101111011001000011110010100, Clock: 1, Reset_S: 1, W_Enable: 1
+# 
+# R1_addr: 000, R2_addr: 110, W_addr: 010
+# 
+#                  650: 
+# 
+# Counter Input: 01000001101011110001110101100011, Clock: 1, Reset_S: 0, Asc: 1, Preload: 0
+# 
+#                  650: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (10110100011100101011110100001000/10110100011100101011110100001000)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (11011011000100000100001111100010/11011011000100000100001111100010)
+# 
+#                  750: 
+# 
+# Register Input: 01010101000010011101010001011101, Clock: 1, Reset_A: 0, Reset_S: 1, W_Enable: 1
+# Inc: 1
+# 
+#                  750: 
+# 
+# Register File Input: 01000101101001100011010110000101, Clock: 1, Reset_S: 0, W_Enable: 1
+# 
+# R1_addr: 000, R2_addr: 111, W_addr: 101
+# 
+#                  750: 
+# 
+# Counter Input: 01101101110011111011100110001010, Clock: 1, Reset_S: 1, Asc: 1, Preload: 0
+# 
+#                  750: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (11011011000100000100001111100011/11011011000100000100001111100011)
+# 
+#                  850: 
+# 
+# Register Input: 11100101100001111100001001111001, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 1
+# Inc: 1
+# 
+#                  850: 
+# 
+# Register File Input: 01101110011010010111000111011010, Clock: 1, Reset_S: 0, W_Enable: 1
+# 
+# R1_addr: 101, R2_addr: 000, W_addr: 010
+# 
+#                  850: 
+# 
+# Counter Input: 11101000011000101101101101100000, Clock: 1, Reset_S: 0, Asc: 0, Preload: 0
+# 
+#                  850: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (11100101100001111100001001111010/11100101100001111100001001111010)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (01000101101001100011010110000101/01000101101001100011010110000101) 
+# R2_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (11011011000100000100001111100010/11011011000100000100001111100010)
+# 
+#                  950: 
+# 
+# Register Input: 01000101101010000001000110001001, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 1
+# Inc: 0
+# 
+#                  950: 
+# 
+# Register File Input: 11011010001100001111011111110110, Clock: 1, Reset_S: 0, W_Enable: 1
+# 
+# R1_addr: 000, R2_addr: 011, W_addr: 111
+# 
+#                  950: 
+# 
+# Counter Input: 01101001100011111011000011111010, Clock: 1, Reset_S: 0, Asc: 0, Preload: 0
+# 
+#                  950: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (01000101101010000001000110001001/01000101101010000001000110001001)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (11011011000100000100001111100001/11011011000100000100001111100001)
+# 
+#                 1050: 
+# 
+# Register Input: 11011001100111111011111011101100, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 1
+# Inc: 0
+# 
+#                 1050: 
+# 
+# Register File Input: 11110000010000010010101000101010, Clock: 1, Reset_S: 0, W_Enable: 0
+# 
+# R1_addr: 000, R2_addr: 111, W_addr: 001
+# 
+#                 1050: 
+# 
+# Counter Input: 00100010100011110010110110010001, Clock: 1, Reset_S: 0, Asc: 0, Preload: 1
+# 
+#                 1050: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (11011001100111111011111011101100/11011001100111111011111011101100)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (11011010001100001111011111110110/11011010001100001111011111110110)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (00100010100011110010110110010001/00100010100011110010110110010001)
+# 
+#                 1150: 
+# 
+# Register Input: 00000000000011101101101110001100, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 1
+# Inc: 0
+# 
+#                 1150: 
+# 
+# Register File Input: 01101001011101100100011101111011, Clock: 1, Reset_S: 0, W_Enable: 0
+# 
+# R1_addr: 001, R2_addr: 010, W_addr: 000
+# 
+#                 1150: 
+# 
+# Counter Input: 11100000001111100010100011101011, Clock: 1, Reset_S: 0, Asc: 1, Preload: 1
+# 
+#                 1150: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (00000000000011101101101110001100/00000000000011101101101110001100)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (01101110011010010111000111011010/01101110011010010111000111011010)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (11100000001111100010100011101011/11100000001111100010100011101011)
+# 
+#                 1250: 
+# 
+# Register Input: 10101100111010001001001000001001, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 1
+# Inc: 0
+# 
+#                 1250: 
+# 
+# Register File Input: 11110100010001011101100111100100, Clock: 1, Reset_S: 0, W_Enable: 0
+# 
+# R1_addr: 001, R2_addr: 010, W_addr: 000
+# 
+#                 1250: 
+# 
+# Counter Input: 00111000001001010011011100001001, Clock: 1, Reset_S: 0, Asc: 1, Preload: 1
+# 
+#                 1250: 
+# 
+# Register: PASS, 
+# Output (Expected/RTL) (10101100111010001001001000001001/10101100111010001001001000001001)
+# 
+# 
+# Register File: PASS, 
+# R1_Output (Expected/RTL) (00000000000000000000000000000000/00000000000000000000000000000000) 
+# R2_Output (Expected/RTL) (01101110011010010111000111011010/01101110011010010111000111011010)
+# 
+# Counter: PASS, 
+# Output (Expected/RTL) (00111000001001010011011100001001/00111000001001010011011100001001)
+# 
+#                 1350: 
+# 
+# Register Input: 00100011000001001110100000100011, Clock: 1, Reset_A: 0, Reset_S: 0, W_Enable: 1
+# Inc: 0
+# 
+#                 1350: 
+# 
+# Register File Input: 11100000001110000010100111000000, Clock: 1, Reset_S: 0, W_Enable: 0
+# 
+# R1_addr: 001, R2_addr: 010, W_addr: 000
+# 
+#                 1350: 
+# 
+# Counter Input: 10011111011001000110110101111011, Clock: 1, Reset_S: 0, Asc: 1, Preload: 1
+# 
+#                 1350: 
+# ** Note: $finish    : ../verif/reg_tb.sv(228)
+#    Time: 1400 ns  Iteration: 0  Instance: .reg_tb
+# End time: 08:16:31 on Nov 22,2015, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 3

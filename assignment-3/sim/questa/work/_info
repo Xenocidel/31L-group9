@@ -7,132 +7,151 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/sim
-vdpi_example
-Z1 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
-DXx4 work 14 tb_top_sv_unit 0 22 D<AAHB:oh;n`]6lf8]f?T3
-VDg1SIo80bB@j0V0VzS_@n1
-r1
-!s85 0
-31
-!i10b 1
-!s100 c5F9]31o0?9b^]0>[n99X1
-InEPkih65WMT9dPEmJ=>Vg1
-!s105 tb_top_sv_unit
-S1
+Z0 d/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_3/sim
+Ecounter
+Z1 w1448184066
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
-Z2 w1446354671
-Z3 8/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/verif/tb_top.sv
-Z4 F/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/verif/tb_top.sv
-L0 7
-Z5 OL;L;10.4c;61
-Z6 !s108 1446359522.000000
-Z7 !s107 /users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/verif/tb_top.sv|
-Z8 !s90 -sv|/users/ugrad2/2015/spring/kelvinhp/EECS_31L/Assignment_2/assignment-2/verif/tb_top.sv|
-!i113 0
-Z9 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Eham1511_decode
-Z10 w1446359510
-Z11 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
-Z12 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z13 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-R0
-Z14 8../design/ham1511_decode.vhd
-Z15 F../design/ham1511_decode.vhd
+Z5 8../design/counter.vhd
+Z6 F../design/counter.vhd
 l0
 L5
-V7@cCXZNGz1^lD4lAmn]?N1
-!s100 ZjMNRV9=nL[L6UVb7_=?S0
-Z16 OL;C;10.4c;61
+VQ=FAdKkzaI`lRDn;E:SUY0
+!s100 ?YlW:zKa_c6bGBHB[Nmj33
+Z7 OL;C;10.4c;61
 32
-Z17 !s110 1446359513
+Z8 !s110 1448204729
 !i10b 1
-Z18 !s108 1446359513.000000
-Z19 !s90 -f|rtl.cfg|
-Z20 !s107 ../design/ham1511_decode.vhd|../design/ham1511_encode.vhd|
+Z9 !s108 1448204729.000000
+Z10 !s90 -f|rtl.cfg|
+Z11 !s107 ../design/counter.vhd|../design/reg_file.vhd|../design/reg_N.vhd|
 !i113 0
-Z21 tExplicit 1
-Astructural
-R11
-R12
-R13
-DEx4 work 14 ham1511_decode 0 22 7@cCXZNGz1^lD4lAmn]?N1
-l18
-L13
-VhG4>BBa=POONZLmV:hFh20
-!s100 >;GBc8FUD=HZnjKmTY=BZ2
-R16
-32
-R17
-!i10b 1
-R18
-R19
-R20
-!i113 0
-R21
-Eham1511_encode
-Z22 w1446353716
-R12
-R13
-R0
-Z23 8../design/ham1511_encode.vhd
-Z24 F../design/ham1511_encode.vhd
-l0
-L4
-VUGoIRMTY:7Q=E5F[9iVG_2
-!s100 Rjf3NbWFXdY5z[a38ZZ1n2
-R16
-32
-R17
-!i10b 1
-R18
-R19
-R20
-!i113 0
-R21
-Astructural
-R12
-R13
-DEx4 work 14 ham1511_encode 0 22 UGoIRMTY:7Q=E5F[9iVG_2
-l14
-L12
-Vf?Wf2d^1;0k_KTN2HG6Nf2
-!s100 oGHKRGeQF>R5SF7LfhHjl2
-R16
-32
-R17
-!i10b 1
-R18
-R19
-R20
-!i113 0
-R21
-Ttb_top
-!s110 1446359523
-V6:`MiLoo:7;6Ab??M]FTH2
-04 11 4 work dpi_example fast 0
-o+acc
-ntb_top
-OL;O;10.4c;61
-Xtb_top_sv_unit
-R1
-VD<AAHB:oh;n`]6lf8]f?T3
-r1
-!s85 0
-31
-!i10b 1
-!s100 XlLRg2F57DdM>dVbSigl92
-ID<AAHB:oh;n`]6lf8]f?T3
-!i103 1
-S1
-R0
+Z12 tExplicit 1
+Abehavioral
 R2
 R3
 R4
-L0 4
-R5
-R6
+DEx4 work 7 counter 0 22 Q=FAdKkzaI`lRDn;E:SUY0
+l19
+L18
+VmbAC9DaX]jB5AYhi;bT`g1
+!s100 SQ7jLYl>=4nRneDPC97><2
 R7
+32
 R8
-!i113 0
+!i10b 1
 R9
+R10
+R11
+!i113 0
+R12
+Ereg_n
+Z13 w1447708270
+R2
+R3
+R4
+R0
+Z14 8../design/reg_N.vhd
+Z15 F../design/reg_N.vhd
+l0
+L5
+V6VPS<bILlWSkgFL??@SJ:3
+!s100 F]4Ma;QAN_DNkMfCzRzUQ0
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 0
+R12
+Artl
+R2
+R3
+R4
+DEx4 work 5 reg_n 0 22 6VPS<bILlWSkgFL??@SJ:3
+l26
+L21
+VWa2zi>WF_7PG7d]@R@Q:P2
+!s100 labSo>4KJ`FEXLOTiDI;z2
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 0
+R12
+vreg_tb
+DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+!s110 1448208982
+!i10b 1
+!s100 >033Az^NbGm2SlIKzLLKN1
+I3T;XhFOj`@S^bbc48YPR40
+VDg1SIo80bB@j0V0VzS_@n1
+!s105 reg_tb_sv_unit
+S1
+R0
+w1448208974
+8../verif/reg_tb.sv
+F../verif/reg_tb.sv
+L0 1
+OL;L;10.4c;61
+r1
+!s85 0
+31
+!s108 1448208982.000000
+!s107 ../verif/reg_tb.sv|
+!s90 -sv|-f|tb.cfg|
+!i113 0
+o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Treg_tb_opt
+!s110 1448208985
+VBeA=gUW;53@ZjBF5P?mb01
+04 6 4 work reg_tb fast 0
+o+acc=mpr
+nreg_tb_opt
+OL;O;10.4c;61
+Eregfile
+Z16 w1448184038
+R2
+R3
+R4
+R0
+Z17 8../design/reg_file.vhd
+Z18 F../design/reg_file.vhd
+l0
+L5
+V6`0^P5Tb6ej:k]J?FCa2F0
+!s100 AGBGMKHonBk;2I^M[JVJ^1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 0
+R12
+Astructural
+R2
+R3
+R4
+DEx4 work 7 regfile 0 22 6`0^P5Tb6ej:k]J?FCa2F0
+l32
+L24
+VG=DX]L?1zNSLjkeTkm2MI0
+!s100 oK35Co4S4<RQJJ7l<2`YP0
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 0
+R12

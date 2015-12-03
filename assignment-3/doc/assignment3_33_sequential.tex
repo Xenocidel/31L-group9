@@ -1,0 +1,112 @@
+\documentclass[paper=letter, fontsize=11pt]{scrartcl}
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{graphicx}
+\graphicspath{{Waveform/}}
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{hyperref}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{University of California Irvine} \\  % Your university, school and/or department name(s)
+\textsc{Course: Introduction to Digital Logic Lab (31L) Fall 2015} \\ [25pt]
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Lab 3 Report - Group 33\\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Kelvin Phan \\ 51197373
+	\and
+	Patrick Skoury \\ 75202200
+	\and
+	Aaron Liao \\ 90811748
+	\and
+	Shawn Howen \\ 60029119
+	\and
+	Andrew Mehta \\ 44592437
+}
+
+\date{\large\today} % Today's date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+
+\section{Creating the Register}
+
+\subsection{Architecture}
+\begin{flushleft}
+	Our design for the register implemented the behavioral style of architecture used for sequential coding. Before defining our ports, we set a GENERIC called "NBIT," which was an integer that defaulted as 32, but could be changed depending on the desired number of bits to be stored in the register. Then, we defined our inputs and output with reference to the ENTITY given for the assignment. Within the architecture, we used the behavioral model of coding, which included a PROCESS statement. Before our PROCESS, we defined a signal called "dhold," which was an STD\_LOGIC\_VECTOR of the same length as "din." The signal was set as a vector of zeros, and is used in the PROCESS to store the previous value of "dout," in case write enable is active low and we don't want to read from "din". Our PROCESS statement had a sensitivity list that depended on "clk" and "rst\_a." The two main IF statements checked whether the asynchronous reset was '1' or if the "clk" was on a rising edge. Within the "clk" statement, IF statements checked for the synchronous reset, whether increment was '0' and write enable were '1,' whether "inc" and write enable were both '1,' or if just "inc" was '1.' If "we" was '0' and we wanted to increment, "dout" was set as "dhold" plus one, rather than "din" plus one. This differs from the case when both "we" and "inc" are '1,' which reads from "din," and disregards the previous value of "dout." If none of the IF statements are true, "dout" is given "dhold," which means there was no change to the output value. We fed in six random inputs to "din" after 14 rounds. The test bench section of the report specifies how we tested our components in further detail. \\[20pt]
+\end{flushleft}
+
+%------------------------------------------------
+\section{Creating the Register File}
+
+\subsection{Architecture}
+\begin{flushleft}
+	Our design for the register file depended heavily on defining our own array TYPE. The first step was initializing two GENERIC integers, "NBIT" and "NSEL." "NBIT" served the same purpose as it did in the single register. "NSEL" was used to define how many registers we would have in our register file. The number of registers was equal to "2**NSEL." After GENERIC, we defined all our input and output ports. Within the architecture, a SUBTYPE called "selRange" was created as the integer range from '0' to "INTEGER'HIGH." Three signals were then created under "selRange," which would be used as indexes for reading and writing data. "Vector" was defined as a subtype of STD\_LOGIC\_VECTOR with the same range of "NBIT." Then, a TYPE we called "matrix" was an ARRAY with the length of "2**NSEL," containing the SUBTYPE "vector." The signal "regN" was of the TYPE "matrix" and was initialized to have all zeros. We essentially created a matrix of "2**NSEL" registers, which stored vectors with the length of "NBIT." After these declarations, we assigned our indexes by converting "raddr\_1," "raddr\_2," and "waddr" to integers. The PROCESS statement only depended on the "clk" signal. Within the PROCESS, we first checked whether "rst\_s" was '1.' If it was, a FOR LOOP set every value in "regN" to zero. If there was no synchronous reset, our outputs "rdata\_1" and "rdata\_2" were set as "regN(i)" with their respective index. If write enable was active high, then "regN(w\_index)" was given the "wdata" input. We fed 12 inputs into our register file in the test bench, each time reading from two addresses and writing to one address. \\[20pt]      
+\end{flushleft}
+
+%-------------------------------------------------------------
+
+%------------------------------------------------
+\section{Creating the Counter}
+
+\subsection{Architecture}
+\begin{flushleft}
+	Our design for the counter starts with defining two GENERIC variables. "NBIT" is the amount of bits that is sent into the internal counter register as well as the number of bit in the output vector. "STEP" is an integer used to increment or decrement in the counter by a certain value. After defining our inputs and outputs, we started our architecture using the behavioral style of coding. Our PROCESS statement only relied on the "clk" signal changing in the sensitivity list. Within the PROCESS, we defined a variable called "temp," which would be used for each IF case. All cases depended on "clk" having an event and equaling '1.' The first case was having the synchronous reset set "temp" to all 0's. If "preload" was '1,' then "din" would be sent to the internal counter register. When "asc" was '1,' "temp" would increment by setting it equal to itself plus an unsigned vector with the value of "STEP" and the length of "NBIT." THe same procedure was used when "asc" was '0,' except the subtraction operator was used. After ending the IF statements, "temp" was sent to "dout." Then, our PROCESS was finished. We fed a total of two random inputs into the "din" signal over a series of 14 rounds, through "preload," in order to test the ascending and descending feature.  \\[20pt]      
+\end{flushleft}
+
+\subsection{Errors Encountered}
+
+\subsubsection{Compilation} 
+\begin{flushleft}
+Problem: The only issue we had with the counter was how to increment and decrement. Originally, we had used the command "temp + 1" and "temp - 1." This would not work because "temp" was an STD\_LOGIC\_VECTOR and 1 was an integer. \\[10pt] 
+
+Resolution: In order to fix this problem, we converted "temp" to unsigned and used the command "to\_unsigned(STEP,NBIT)" in order to have two unsigned vectors. This allowed us to add or subtract "temp" with an unsigned vector, given the value of "STEP" and the length of "NBIT." The final step was changing this unsigned vector back to an STD\_LOGIC\_VECTOR.  \\[20pt] 
+\end{flushleft}
+
+%-------------------------------------------------------------
+\section{Creating the Testbench}
+
+\subsection{Architecture}
+\begin{flushleft}
+	Our design for the testbench, written in SystemVerilog, allows us to verify the functionality of our components, by feeding them random inputs and testing specific cases. Our group decided to use one test bench that implemented all our components. We start the test bench by defining our signals, including those for the register, register file, counter, and the SystemVerilog design of our components. We created the same components in SystemVerilog in order to verify the outputs and compare with the expected value. After defining all signals and variables, we started our tests. Within the initial begin, we used a for loop to initialize the register file to all zeros. "Clk" was also initialized as '0.' Then, we began a series of tests with 100 ns intervals. Each round of tests checked the functionality of the register, register file, and counter. There were 10 rounds total that used each component. The 11th and 12th round did not feed inputs to the register. The final two rounds only tested the counter. After the initial begin statement, we generated two clocks with an always statement. The first clock had a period of 100 ns, while the second had a period of 96 ns. The second clock, "clk2," was used to imitate an input skew. After generating our clocks, we used an always statement that responded to the positive edge of "clk2" in order to generate random input values for the register, the register file ("wdata"), and the counter data input. We used an if statement, which depended on whether the inputs had less than 32 bits, otherwise they were given "\$urandom," which defaults as 32 bits. "Clk2" was only used for feeding in random inputs, whereas "clk" was used throughout the rest of the test bench for all other necessary always statements. Then, we instantiated our register, register file, and counter components. The next four always statements were used to create SystemVerilog equivalents of our components, which produced an expected output. Three responded to the positive edge of the clock, while one of the four was sensitive to the asynchronous reset, which was a feature of the register. The final step was to compare the VHDL components with their SystemVerilog counterparts. At the positive edge of the clock, a "\$display" function was used to show important information, including the inputs, "clk" value, and "\$time" during simulation. At the negative edge of the clock, an if statement checked if the expected data out of the SystemVerilog component matched the actual output of the VHDL component. Two display commands were used for each case, pass or fail. Whether the test passed or failed, the same information was displayed. This included all outputs of each VHDL component, as well as the expected output. Overall, our test bench was essential in the verification of our components and proved the correct functionality of our register, counter, and register file.               
+	         
+\end{flushleft}
+
+
+
+\end{document}

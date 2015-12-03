@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{Creating the Register}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Architecture}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{Creating the Register File}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Architecture}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Creating the Counter}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Architecture}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Errors Encountered}{section.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Compilation}{subsection.3.2}% 8
+\BOOKMARK [1][-]{section.4}{Creating the Testbench}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Architecture}{section.4}% 10
