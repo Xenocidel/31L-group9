@@ -1,31 +1,68 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
-ENTITY alu_32bit IS 
-	PORT(
-	A : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-	B : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-	opsel : IN STD_LOGIC_VECTOR(2 DOWNTO 0); mode : IN STD_LOGIC;
-	output1 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-	cout : OUT STD_LOGIC );
-	END alu_32bit;
-	
-ARCHITECTURE Structural OF alu_32bit IS
-	COMPONENT ALU_1bit
-		PORT(A, B, mode, cin : IN STD_LOGIC; opsel : IN STD_LOGIC_VECTOR; output1, cout: OUT STD_LOGIC);
-	END COMPONENT;
-	
-	SIGNAL cin, optype : STD_LOGIC;
-	SIGNAL coutbuff: STD_LOGIC_VECTOR(31 DOWNTO 0);
-BEGIN
-	cin <=  '1' WHEN opsel = "100" OR opsel = "110" OR opsel = "011" ELSE
-			'0';
-			
-	ALUXBASE : ALU_1bit port map(A(0), B(0), mode, cin, opsel, output1(0), coutbuff(0));
-	
-	G1: FOR i IN 1 TO 31 GENERATE
+
+GENERIC(DATA_WIDTH: INTEGER := 32;
 		
-		ALUX: ALU_1bit port map(A(i), B(i), mode, coutbuff(i-1), opsel, output1(i), coutbuff(i));
-	END GENERATE G1;
+
+ENTITY alu IS 
+	PORT(
+	clk: IN STD_LOGIC;
+	data_reg : IN STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
+	data_mux : IN STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
+	rst: IN STD_LOGIC;
+	opsel : IN STD_LOGIC_VECTOR(3 DOWNTO 0)
+	data_out: OUT STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
+	equal: OUT STD_LOGIC;
+	carry: OUT STD_LOGIC;
+	overflow : OUT STD_LOGIC );
+	END alu;
 	
-	cout <= coutbuff(31);	
+ARCHITECTURE Structural OF alu IS
+	
+	PROCESS (clk, rst)
+		VARIABLE tmp : INTEGER RANGE -2**(DATA_WIDTH+1) to 2**(DATA_WIDTH+1);
+		BEGIN
+			IF clk'EVENT and clk = '1' and rst = '1' THEN --rst 1 means on
+				data_out <= (OTHERS => '0');
+				equal <= '0';
+				carry <= '0';
+				overflow <= '0';
+				CASE opsel IS
+					WHEN "0000" => --nothing
+					WHEN "0001" => --add reg and mux/immediate
+						tmp := to_integer(signed(data_reg) + signed(data_mux));
+						IF tmp >= 2**DATA_WIDTH THEN
+							overflow <= '1';
+							carry <= '1';
+							data_out <= (OTHERS => '0');
+						ELSE
+							data_out <= std_logic_vector(signed(data_reg) + signed(data_mux));
+						END IF
+					WHEN "0010" => --subtract reg and mux/immediate
+						tmp := to_integer(signed(data_reg) - signed(data_mux));
+						IF tmp < -2**DATA_WIDTH THEN
+							overflow <= '1';
+							carry <= '1';
+							data_out <= (OTHERS => '0');
+						ELSE
+							data_out <= std_logic_vector(signed(data_reg) - signed(data_mux));
+						END IF
+					WHEN "0011" => --compare reg and mux/immediate
+						IF signed(data_reg = data_mux THEN
+							equal <= '1';
+						ELSIF 
+							carry <= '1'; --if reg > mux, then carry = 1. if mux < reg, then both equal and carry = 0.
+						END IF
+					WHEN "0101" => --AND reg and mux/immediate
+					
+					WHEN "0110" => --OR reg and mux/immediate
+					
+					WHEN "0111" => --NOT reg
+					
+					WHEN "1000" => --XOR reg and mux/immediate
+					
+					WHEN "1001" => --SLL reg mux/immediate number of places
+					
+					WHEN "1011" => --MOV reg/immediate to out
+			END IF
 END Structural;
