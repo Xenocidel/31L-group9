@@ -1,7 +1,7 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
 
-GENERIC(DATA_WIDTH: INTEGER := 32;
+GENERIC(DATA_WIDTH: INTEGER := 32);
 		
 
 ENTITY alu IS 
@@ -65,4 +65,5 @@ ARCHITECTURE Structural OF alu IS
 					
 					WHEN "1011" => --MOV reg/immediate to out
 			END IF
+	END PROCESS
 END Structural;
