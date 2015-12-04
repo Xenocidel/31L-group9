@@ -4,7 +4,7 @@ USE ieee.numeric_std.ALL;
 
 ENTITY counter IS
 	GENERIC (NBIT: INTEGER := 32;
-				STEP: INTEGER := 1);
+				STEP: INTEGER := 4);
 	PORT(
 				clk : IN STD_LOGIC;
 				rst_a : IN STD_LOGIC;
@@ -26,7 +26,7 @@ BEGIN
 				IF (preload = '1') THEN										
 					temp := din;												--Load din into counter register
 				ELSE											
-					temp := std_logic_vector((unsigned(temp)) + to_unsigned(STEP, NBIT)); --Count up
+					temp := std_logic_vector((unsigned(temp)) + to_unsigned(STEP, NBIT)); --Count up 4 bytes
 				END IF
 			END IF;
 			dout <= temp;

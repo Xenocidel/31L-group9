@@ -1,7 +1,7 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
 
-GENERIC (ADDR_WIDTH: INTEGER := 32;
+GENERIC (ADDR_WIDTH: INTEGER := 6;
 		 DATA_WIDTH: INTEGER := 32);
 
 ENTITY dma is
@@ -25,9 +25,14 @@ ARCHITECTURE dma of dma is
 			IF rst='1' THEN
 				IF clk'EVENT and clk='1' and req='1' THEN
 					ack <= '1';
+					bus_used := '1';
 					addr_o <= addr;
 					data_o <= data;
+				ELSIF clk'EVENT and clk='1' and req='0' THEN
+					ack <= '0';
+					bus_used := '0';
 				END IF
+				
 			END IF
 	END PROCESS
 
