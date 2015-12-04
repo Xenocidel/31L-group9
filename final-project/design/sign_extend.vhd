@@ -1,5 +1,6 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
+USE IEEE.std_logic_arith.ALL;
 
 ENTITY sign_extend is
 	PORT(
@@ -11,8 +12,7 @@ END sign_extend;
 
 ARCHITECTURE Structural of sign_extend is
 BEGIN
-	output <= ("000000000000000000" & input(15 downto 0)) WHEN rst='0' and input(in_bits-1)='0' ELSE
-			  (others => "1111111111111111111" & input(15 downto 0)) WHEN rst='0' and input(in_bits-1)='1' ELSE
-			  (others => '0') WHEN rst='1';
+	output <= (others => '0') WHEN rst='1' ELSE
+			  (SXT(input, 32));
 
 END Structural
