@@ -76,14 +76,17 @@ ARCHITECTURE Structural OF alu IS
 						tmp2 := data_reg;
 						IF tmp > 0 THEN
 							L1: FOR i IN 1 TO tmp LOOP
-								tmp2 := tmp2(DATA_WIDTH-2 DOWNTO 0) & '0';
+								tmp2(i) := tmp2(DATA_WIDTH-2 DOWNTO 0) & '0';
 								END LOOP L1;
+							data_out <= tmp2(tmp);	
 						ELSIF tmp < 0 THEN
 							L2: FOR i IN tmp TO -1 LOOP
-								tmp2 := '0' & tmp2(DATA_WIDTH-1 DOWNTO 1);
+								tmp2(i) := '0' & tmp2(DATA_WIDTH-1 DOWNTO 1);
 								END LOOP L2;
+							data_out <= tmp2(-1);
+						ELSE
+							data_out <= tmp2;
 						END IF
-						data_out <= tmp2;
 					WHEN "1011" => --MOV reg/immediate to out
 						IF reg_imm = '0' THEN					--reg_imm checks if register or immediate instruction
 							data_out <= data_reg;
