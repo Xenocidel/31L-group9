@@ -75,13 +75,15 @@ ARCHITECTURE Structural OF alu IS
 						tmp := to_integer(signed(data_mux));
 						tmp2 := data_reg;
 						IF tmp > 0 THEN
+							tmp2(0) := data_reg;
 							L1: FOR i IN 1 TO tmp LOOP
-								tmp2(i) := tmp2(DATA_WIDTH-2 DOWNTO 0) & '0';
+								tmp2(i) := tmp2(i-1)(DATA_WIDTH-2 DOWNTO 0) & '0';
 								END LOOP L1;
 							data_out <= tmp2(tmp);	
 						ELSIF tmp < 0 THEN
+							tmp2(tmp-1) := data_reg;
 							L2: FOR i IN tmp TO -1 LOOP
-								tmp2(i) := '0' & tmp2(DATA_WIDTH-1 DOWNTO 1);
+								tmp2(i) := '0' & tmp2(i-1)(DATA_WIDTH-1 DOWNTO 1);
 								END LOOP L2;
 							data_out <= tmp2(-1);
 						ELSE
