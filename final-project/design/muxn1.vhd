@@ -12,7 +12,7 @@ ENTITY muxn1 IS
 	GENERIC(NBIT: INTEGER :=32;
 			NSEL: INTEGER :=2);
 	PORT (
-	input : IN reg_to_array;
+	input : IN reg_to_array; --0 from sign extender, 1 from regfile
 	opsel : IN STD_LOGIC_VECTOR (NSEL-1 DOWNTO 0);
 	Y : OUT std_logic_vector (NSEL-1 DOWNTO 0));
 END muxn1;

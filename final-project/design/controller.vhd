@@ -5,7 +5,6 @@ ENTITY controller is
 	PORT(
 		clk, rst: IN STD_LOGIC;
 		instr: IN STD_LOGIC_VECTOR(31 DOWNTO 0); --from instruction memory
-		data_in: IN STD_LOGIC_VECTOR(31 DOWNTO 0); --from ALU data_out
 		we: OUT STD_LOGIC; --goes to regfile
 		ri: OUT STD_LOGIC; --goes to muxn1
 		rs, rd, rt: OUT STD_LOGIC_VECTOR(5 DOWNTO 0); --goes to regfile
@@ -52,8 +51,10 @@ Architecture Behavioral of mips IS
 				we <= '0'; --read
 			ELSIF clk'EVENT and clk='1' and data_in/="00000000000000000000000000000000" THEN
 				opcode <= (OTHERS => '0');
-				we <= '1'; --write
+				we <= '0'; --read
 			END IF
+		ELSIF rst = '1' and clk'EVENT and clk = '1' THEN
+			we <= '1' --write
 		END IF
 	END PROCESS
 END Behavioral;
