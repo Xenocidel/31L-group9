@@ -11,12 +11,12 @@ PORT (
 clk : IN std_logic ;
 rst_s : IN std_logic ; -- synchronous reset
 we : IN std_logic ; -- write enable
-raddr_1 : IN std_logic_vector (NSEL -1 DOWNTO 0); -- read address 1
-raddr_2 : IN std_logic_vector (NSEL -1 DOWNTO 0); -- read address 2
-waddr : IN std_logic_vector (NSEL -1 DOWNTO 0); -- write address
-rdata_1 : OUT std_logic_vector (NBIT -1 DOWNTO 0); -- read data 1
-rdata_2 : OUT std_logic_vector (NBIT -1 DOWNTO 0); -- read data 2
-wdata : IN std_logic_vector (NBIT -1 DOWNTO 0) -- write data 1
+raddr_1 : IN std_logic_vector (NSEL -1 DOWNTO 0); --from controller rs
+raddr_2 : IN std_logic_vector (NSEL -1 DOWNTO 0); --from controller rt
+waddr : IN std_logic_vector (NSEL -1 DOWNTO 0); -- from controller rd
+rdata_1 : OUT std_logic_vector (NBIT -1 DOWNTO 0); --to ALU data_reg
+rdata_2 : OUT std_logic_vector (NBIT -1 DOWNTO 0); --to mux input(1)
+wdata : IN std_logic_vector (NBIT -1 DOWNTO 0) --from ALU data_out
 );
 
 END regfile ;
