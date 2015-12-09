@@ -18,8 +18,8 @@ ENTITY alu IS
 	overflow : OUT STD_LOGIC );
 	END alu;
 	
-ARCHITECTURE Structural OF alu IS
-	
+ARCHITECTURE Behavioral OF alu IS
+	BEGIN
 	PROCESS (clk, rst)
 		VARIABLE tmp : INTEGER;
 		VARIABLE tmp2 : STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
@@ -43,7 +43,7 @@ ARCHITECTURE Structural OF alu IS
 							data_out <= (OTHERS => '0');	
 						ELSE
 							data_out <= std_logic_vector(signed(data_reg) + signed(data_mux));
-						END IF
+						END IF;
 					WHEN "0010" => --subtract reg and mux/immediate
 						tmp := to_integer(signed(data_reg)) - to_integer(signed(data_mux));
 						IF tmp >= (2**DATA_WIDTH-1) THEN		--same conditions as addition
@@ -56,13 +56,13 @@ ARCHITECTURE Structural OF alu IS
 							data_out <= (OTHERS => '0');	
 						ELSE
 							data_out <= std_logic_vector(signed(data_reg) - signed(data_mux));
-						END IF
+						END IF;
 					WHEN "0011" => 								--compare reg and mux/immediate
 						IF signed(data_reg = data_mux) THEN
 							equal <= '1';
 						ELSIF signed(data_reg > data_mux) THEN
 							carry <= '1'; 						--if reg > mux, then carry = 1 if mux < reg, then both equal and carry = 0.
-						END IF
+						END IF;
 					WHEN "0101" => --AND reg and mux/immediate
 						data_out <= data_reg AND data_mux;
 					WHEN "0110" => --OR reg and mux/immediate
@@ -88,14 +88,14 @@ ARCHITECTURE Structural OF alu IS
 							data_out <= tmp2(-1);
 						ELSE
 							data_out <= tmp2;
-						END IF
+						END IF;
 					WHEN "1011" => --MOV reg/immediate to out
 						IF reg_imm = '0' THEN					--reg_imm checks if register or immediate instruction
 							data_out <= data_reg;
 						ELSIF reg_imm = '1' THEN
 							data_out <= data_mux;
-						END IF	
-				END CASE		
-			END IF
-	END PROCESS
-END Structural;
+						END IF;	
+				END CASE;		
+			END IF;
+	END PROCESS;
+END Behavioral;
