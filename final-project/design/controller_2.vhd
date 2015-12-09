@@ -43,16 +43,18 @@ BEGIN
 	END PROCESS;
 
 	PROCESS (clk, rst)
+	VARIABLE req, ack: STD_LOGIC; --main memory request/acknowledge to DMA
 	VARIABLE pcount: STD_LOGIC_VECTOR(5 DOWNTO 0); --counter 
-	VARIABLE reg_out1, reg_out2: STD_LOGIC_VECTOR(31 DOWNTO 0);  --regfile outputs
+	VARIABLE mem_addr, dma_addr: STD_LOGIC_VECTOR(5 DOWNTO 0); --main memory & DMA addresses
+	VARIABLE mainmem_out, dma_out reg_out1, reg_out2: STD_LOGIC_VECTOR(31 DOWNTO 0);  --regfile & main memory & DMA outputs
 	VARIABLE sign_out: STD_LOGIC_VECTOR(31 DOWNTO 0);
 	VARIABLE alu_in, alu_out: STD_LOGIC_VECTOR(31 DOWNTO 0);  --ALU output
 	BEGIN	
 		
 		IF (clk'EVENT and clk = '1') THEN
 			CASE pr_state IS
-				WHEN A =>
-					--Use DMA to fill Instruction Memory
+				WHEN A =>	--Use DMA to fill Instruction Memory
+					--Testbench acts as main memory and uses DMA to send instructions to mem64x32
 					pcount := OTHERS => '0';	--initialize counter to 0 
 					nx_state <= B;
 				WHEN B =>	--Use program counter to get instruction from memory
