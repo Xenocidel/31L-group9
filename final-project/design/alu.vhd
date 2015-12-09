@@ -24,7 +24,7 @@ ARCHITECTURE Structural OF alu IS
 		VARIABLE tmp : INTEGER;
 		VARIABLE tmp2 : STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
 		BEGIN
-			IF clk'EVENT and clk = '1' and rst = '1' THEN --rst 1 means on
+			IF clk'EVENT and clk = '1' and rst = '0' THEN --rst 1 means on
 				data_out <= (OTHERS => '0');
 				equal <= '0';
 				carry <= '0';

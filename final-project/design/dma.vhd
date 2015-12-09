@@ -23,14 +23,16 @@ ARCHITECTURE dma of dma is
 		VARIABLE bus_used: std_logic;
 		BEGIN
 			IF rst='1' THEN--off when reset is 0
-				IF clk'EVENT and clk='1' and req='1' THEN
+				IF clk'EVENT and clk='1' THEN
 					ack <= '1';--main memory will send data once acknowledge signal is received
-					bus_used := '1';
-					addr_o <= addr;--forward addr and data to instruction memory
-					data_o <= data;
 				ELSIF clk'EVENT and clk='1' and req='0' THEN
 					ack <= '0';
 					bus_used := '0';
+				END IF; 
+				IF clk'EVENT and clk = '1' and req = '1' THEN	
+					bus_used := '1';
+					addr_o <= addr;--forward addr and data to instruction memory
+					data_o <= data;
 				END IF
 			END IF
 	END PROCESS

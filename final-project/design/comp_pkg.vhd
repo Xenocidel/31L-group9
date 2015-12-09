@@ -42,13 +42,21 @@ PACKAGE comp_pkg IS
 		);
 	END COMPONENT;
 	--instruction memory (cache)--
+	COMPONENT mem64x32 IS
+	 port (
+    a   : in    std_logic_vector(5 downto 0);   -- address bus
+    d   : inout std_logic_vector(31 downto 0);  -- data bus
+    rwb : in    std_logic;                      -- read/write_bar
+    oeb: in std_logic);                 --output enable bar                 --output enable bar
+	END COMPONENT;
+	--main memory--
 	COMPONENT ram IS
 	port(
   addr : IN std_logic_vector (10 DOWNTO 0);
   rw : IN std_logic;
   csb : IN std_logic;
   oeb : IN std_logic;
-  dataIO : INOUT std_logic_vector (31 DOWNTO 0));
+  dataIO : INOUT std_logic_vector (31 DOWNTO 0));  
 	END COMPONENT; 
 	--pc--
 	COMPONENT counter IS
@@ -83,10 +91,5 @@ wdata : IN std_logic_vector (NBIT -1 DOWNTO 0) --from ALU data_out
 );
 	END COMPONENT; 
 	--mux--
-	COMPONENT muxn1 IS
-	PORT (
-	input : IN reg_to_array; --0 from sign extender, 1 from regfile
-	opsel : IN STD_LOGIC_VECTOR (NSEL-1 DOWNTO 0);
-	Y : OUT std_logic_vector (NSEL-1 DOWNTO 0));
-	END COMPONENT; 
+
 END comp_pkg;

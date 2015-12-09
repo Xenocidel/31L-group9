@@ -13,7 +13,7 @@ ENTITY controller is
 		);
 END controller;
 
-Architecture Behavioral of mips IS
+Architecture Behavioral of controller IS
 
 	--Universal
 	SIGNAL INSTRUCTION_TYPE: STD_LOGIC;

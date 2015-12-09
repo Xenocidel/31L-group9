@@ -1,26 +1,41 @@
---copied from prev assignment
-package Common is
-	TYPE reg_to_array is array (2**NSEL-1 DOWNTO 0) of std_logic_vector(NBIT-1 DOWNTO 0);
-end Common
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.All;
+
+package gen_array_pkg is
+	CONSTANT W: INTEGER := 32;
+	subtype gen_vec is std_logic_vector(W-1 DOWNTO 0);
+	type array_gen is array(natural range <>) of gen_vec;
+end gen_array_pkg;
+
 
 LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.all;
-use IEEE.numeric_std.all;
-use work.Common.all;
+USE IEEE.STD_LOGIC_1164.All;
+
+LIBRARY work;
+USE work.gen_array_pkg.ALL; 
 
 ENTITY muxn1 IS
-	GENERIC(NBIT: INTEGER :=32;
-			NSEL: INTEGER :=2);
-	PORT (
-	input : IN reg_to_array; --0 from sign extender, 1 from regfile
-	opsel : IN STD_LOGIC_VECTOR (NSEL-1 DOWNTO 0);
-	Y : OUT std_logic_vector (NSEL-1 DOWNTO 0));
-END muxn1;
 
-ARCHITECTURE Structural OF muxn1 IS
-	SIGNAL index : INTEGER;
+GENERIC(in_num : INTEGER := 8; reg_width : INTEGER := 32); 
 
+PORT ( 
+in_list: IN array_gen (in_num -1 DOWNTO 0); 
+sel: IN INTEGER; 
+Y : OUT STD_LOGIC_VECTOR (reg_width -1 DOWNTO 0) 
+);
+
+END muxN1;
+
+ARCHITECTURE DataFlow OF muxn1 IS
+	SUBTYPE reg_input IS STD_LOGIC_VECTOR(reg_width -1 DOWNTO 0); 
+	TYPE regselect IS ARRAY (in_num -1  DOWNTO 0) OF reg_input;
+	SIGNAL choice: regselect; 
+	
 BEGIN
-	index <= to_integer(unsigned(opsel));
-	Y <= (input(index));
-END Structural;
+	G1: FOR i in 0 to in_num -1 GENERATE
+		choice(i)<= in_list(i);
+	END GENERATE G1; 
+	
+	Y <= choice(sel);
+
+END DataFlow; 
