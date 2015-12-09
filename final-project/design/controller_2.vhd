@@ -21,6 +21,12 @@ Architecture Behavioral of controller_2 IS
 	SIGNAL imm: STD_LOGIC_VECTOR(14 DOWNTO 0);
 	--ALU
 	SIGNAL equal, carry, overflow: STD_LOGIC;
+	--Regfile
+	SUBTYPE selRange IS INTEGER RANGE 0 TO INTEGER'HIGH;  
+	SIGNAL read_index1, read_index2, w_index: selRange;
+	SUBTYPE vector IS STD_LOGIC_VECTOR (NBIT -1 DOWNTO 0);
+	TYPE matrix IS ARRAY (2**NSEL-1 DOWNTO 0) OF vector; 
+	SIGNAL regN: matrix := ((others =>(others => '0'))); 
 	--FSM
 	TYPE state is (A,B,C,D,E);
 	SIGNAL pr_state, nx_state : state;
@@ -53,13 +59,17 @@ BEGIN
 					instr_memory: mem64x32 port map(pcount, instr, '1', '1'); --send address to instruction memory
 					nx_state <= C;
 				WHEN C =>	--Decode instruction and send addresses to regfile
-					instr_type <= instr(31);
-					rs <= instr(30 DOWNTO 25);
-					rd <= instr(24 DOWNTO 19);
-					opcode <= instr(18 DOWNTO 15);
-					rt <= instr(14 DOWNTO 9);
-					imm <= instr(14 DOWNTO 0);
-					reg_memory: regfile port map (clk, '0', '0', rs, rt, rd, reg_out1, reg_out2, alu_out);
+					instr_type <= instr(31);			--Register or Immediate bit
+					rs <= instr(30 DOWNTO 25);			--1st register address
+					rd <= instr(24 DOWNTO 19);			--Write destination
+					opcode <= instr(18 DOWNTO 15);		--Function 
+					rt <= instr(14 DOWNTO 9);			--2nd register address
+					imm <= instr(14 DOWNTO 0);			--Immediate value 
+					read_index1 <= to_integer(unsigned(rs));
+					read_index2 <= to_integer(unsigned(rt));
+					w_index <= to_integer(unsigned(rd));
+					reg_out1 := regN(read_index1);
+					reg_out2 := regN(read_index2);
 					sign: sign_extend port map ('0', imm, sign_out);
 					nx_state <= D;
 				WHEN D =>	--Choose if register or immediate and send to ALU	
@@ -71,7 +81,7 @@ BEGIN
 					funct: alu port map (clk, reg_out1, alu_in, rst, instr_type, opcode, alu_out, equal, carry, overflow);
 					nx_state <= E;
 				WHEN E =>	--Write ALU output into regfile
-					reg_memory2: regfile port map (clk, '0', '1', rs, rt, rd, reg_out1, reg_out2, alu_out);
+					regN(w_index) <= alu_out;
 					pcount := std_logic_vector((unsigned(pcount)) + to_unsigned(1, 6));
 					nx_state <= B;
 			END CASE;	
