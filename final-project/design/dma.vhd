@@ -1,10 +1,11 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
 
-GENERIC (ADDR_WIDTH: INTEGER := 6;--64 addresses possible
-		 DATA_WIDTH: INTEGER := 32);
+
 
 ENTITY dma is
+GENERIC (ADDR_WIDTH: INTEGER := 6;--64 addresses possible
+		 DATA_WIDTH: INTEGER := 32);
 	PORT(
 		clk: IN STD_LOGIC;
 		rst: IN STD_LOGIC;
@@ -25,16 +26,13 @@ ARCHITECTURE dma of dma is
 			IF rst='1' THEN--off when reset is 0
 				IF clk'EVENT and clk='1' THEN
 					ack <= '1';--main memory will send data once acknowledge signal is received
-				ELSIF clk'EVENT and clk='1' and req='0' THEN
-					ack <= '0';
-					bus_used := '0';
 				END IF; 
 				IF clk'EVENT and clk = '1' and req = '1' THEN	
 					bus_used := '1';
 					addr_o <= addr;--forward addr and data to instruction memory
 					data_o <= data;
-				END IF
-			END IF
-	END PROCESS
+				END IF;
+			END IF;
+	END PROCESS;
 
-END dma
+END dma;

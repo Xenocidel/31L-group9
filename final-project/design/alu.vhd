@@ -1,17 +1,19 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
+USE IEEE.NUMERIC_STD.ALL;
 
-GENERIC(DATA_WIDTH: INTEGER := 32);
-		
+
 
 ENTITY alu IS 
+	GENERIC(DATA_WIDTH: INTEGER := 32);
 	PORT(
+	alu_en: IN STD_LOGIC;
 	clk: IN STD_LOGIC;
 	data_reg : IN STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
 	data_mux : IN STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
 	rst: IN STD_LOGIC;
 	reg_imm: IN STD_LOGIC;
-	opsel : IN STD_LOGIC_VECTOR(3 DOWNTO 0)
+	opsel : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 	data_out: OUT STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
 	equal: OUT STD_LOGIC;
 	carry: OUT STD_LOGIC;
@@ -19,12 +21,16 @@ ENTITY alu IS
 	END alu;
 	
 ARCHITECTURE Structural OF alu IS
+subtype vector IS STD_LOGIC_VECTOR(31 DOWNTO 0);
+type matrix IS ARRAY (0 TO 31) OF vector;
+SIGNAL tmp2 : matrix;
+BEGIN
 	
 	PROCESS (clk, rst)
 		VARIABLE tmp : INTEGER;
-		VARIABLE tmp2 : STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
+		
 		BEGIN
-			IF clk'EVENT and clk = '1' and rst = '0' THEN --rst 1 means on
+			IF clk'EVENT and clk = '1' and rst = '0' and alu_en = '1' THEN --rst 1 means on
 				data_out <= (OTHERS => '0');
 				equal <= '0';
 				carry <= '0';
@@ -43,7 +49,7 @@ ARCHITECTURE Structural OF alu IS
 							data_out <= (OTHERS => '0');	
 						ELSE
 							data_out <= std_logic_vector(signed(data_reg) + signed(data_mux));
-						END IF
+						END IF;
 					WHEN "0010" => --subtract reg and mux/immediate
 						tmp := to_integer(signed(data_reg)) - to_integer(signed(data_mux));
 						IF tmp >= (2**DATA_WIDTH-1) THEN		--same conditions as addition
@@ -56,13 +62,13 @@ ARCHITECTURE Structural OF alu IS
 							data_out <= (OTHERS => '0');	
 						ELSE
 							data_out <= std_logic_vector(signed(data_reg) - signed(data_mux));
-						END IF
+						END IF;
 					WHEN "0011" => 								--compare reg and mux/immediate
-						IF signed(data_reg = data_mux) THEN
+						IF (signed(data_reg) =  signed(data_mux)) THEN
 							equal <= '1';
-						ELSIF signed(data_reg > data_mux) THEN
+						ELSIF (signed(data_reg) > signed(data_mux)) THEN
 							carry <= '1'; 						--if reg > mux, then carry = 1 if mux < reg, then both equal and carry = 0.
-						END IF
+						END IF;
 					WHEN "0101" => --AND reg and mux/immediate
 						data_out <= data_reg AND data_mux;
 					WHEN "0110" => --OR reg and mux/immediate
@@ -73,29 +79,31 @@ ARCHITECTURE Structural OF alu IS
 						data_out <= data_reg XOR data_mux;
 					WHEN "1001" => --SLL reg mux/immediate number of places
 						tmp := to_integer(signed(data_mux));
-						tmp2 := data_reg;
+						tmp2(0) <= data_reg; 
 						IF tmp > 0 THEN
-							tmp2(0) := data_reg;
-							L1: FOR i IN 1 TO tmp LOOP			--shift by tmp to the left
-								tmp2(i) := tmp2(i-1)(DATA_WIDTH-2 DOWNTO 0) & '0';
+							tmp2(0) <= data_reg;
+							L1: FOR i IN 1 TO tmp LOOP		--shift by tmp to the left
+								tmp2(i) <= tmp2(i-1)(DATA_WIDTH-2 DOWNTO 0) & '0';
 								END LOOP L1;
 							data_out <= tmp2(tmp);	
 						ELSIF tmp < 0 THEN
-							tmp2(tmp-1) := data_reg;
-							L2: FOR i IN tmp TO -1 LOOP			--shift by tmp to the right
-								tmp2(i) := '0' & tmp2(i-1)(DATA_WIDTH-1 DOWNTO 1);
+							tmp := to_integer(unsigned(data_mux));
+							tmp2(0) <= data_reg;
+							L2: FOR i IN 1 TO  tmp LOOP			--shift by tmp to the right
+								tmp2(i) <= '0' & tmp2(i-1)(DATA_WIDTH-1 DOWNTO 1);
 								END LOOP L2;
-							data_out <= tmp2(-1);
+							data_out <= tmp2(tmp);
 						ELSE
-							data_out <= tmp2;
-						END IF
+							data_out <= tmp2(0);
+						END IF;
 					WHEN "1011" => --MOV reg/immediate to out
 						IF reg_imm = '0' THEN					--reg_imm checks if register or immediate instruction
 							data_out <= data_reg;
 						ELSIF reg_imm = '1' THEN
 							data_out <= data_mux;
-						END IF	
-				END CASE		
-			END IF
-	END PROCESS
+						END IF;
+					WHEN OTHERS => 
+				END CASE;		
+			END IF;
+	END PROCESS;
 END Structural;

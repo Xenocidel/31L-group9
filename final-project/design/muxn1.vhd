@@ -10,6 +10,7 @@ end gen_array_pkg;
 
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
+USE IEEE.NUMERIC_STD.ALL;
 
 LIBRARY work;
 USE work.gen_array_pkg.ALL; 
@@ -18,24 +19,26 @@ ENTITY muxn1 IS
 
 GENERIC(in_num : INTEGER := 2; reg_width : INTEGER := 32); 
 
-PORT ( 
+PORT (
+mux_en : IN STD_LOGIC;
 in_list: IN array_gen (in_num -1 DOWNTO 0); 
-sel: IN INTEGER; 
+sel: IN STD_LOGIC_VECTOR(0 DOWNTO 0); 
 Y : OUT STD_LOGIC_VECTOR (reg_width -1 DOWNTO 0) 
 );
 
-END muxN1;
+END muxn1;
 
 ARCHITECTURE DataFlow OF muxn1 IS
 	SUBTYPE reg_input IS STD_LOGIC_VECTOR(reg_width -1 DOWNTO 0); 
 	TYPE regselect IS ARRAY (in_num -1  DOWNTO 0) OF reg_input;
 	SIGNAL choice: regselect; 
-	
+	SIGNAL selection: INTEGER;
 BEGIN
 	G1: FOR i in 0 to in_num -1 GENERATE
 		choice(i)<= in_list(i);
 	END GENERATE G1; 
-	
-	Y <= choice(sel);
+	selection <= to_integer(unsigned(sel)); 
+	Y <= choice(selection) WHEN mux_en = '1' ELSE
+					(OTHERS => '0');
 
 END DataFlow; 

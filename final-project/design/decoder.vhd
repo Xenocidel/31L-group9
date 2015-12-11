@@ -27,6 +27,11 @@ Architecture Behavioral of decoder IS
 	SIGNAL I_IMMEDIATE_VALUE: STD_LOGIC_VECTOR(14 DOWNTO 0);
 	
 	BEGIN
+		
+	
+	PROCESS (clk, rst)
+	BEGIN
+		IF rst = '0' THEN --rst low means on
 		INSTRUCTION_TYPE <= instr(31);
 		REGISTER_SOURCE_ADDRESS <= instr(30 DOWNTO 25);
 		REGISTER_DESTINATION_ADDRESS <= instr(24 DOWNTO 19);
@@ -37,12 +42,7 @@ Architecture Behavioral of decoder IS
 		ELSIF (INSTRUCTION_TYPE='1') THEN --I Type
 			I_IMMEDIATE_VALUE <= instr(14 DOWNTO 0);
 		END IF;
-	
-	PROCESS (clk, rst)
-	BEGIN
-		IF rst = '0' THEN --rst low means on
 			IF clk'EVENT and clk='1' THEN
-				instr_type <= INSTRUCTION_TYPE;
 				rs <= REGISTER_SOURCE_ADDRESS;
 				rd <= REGISTER_DESTINATION_ADDRESS;
 				rt <= REGISTER_TEMP_ADDRESS;
@@ -52,9 +52,9 @@ Architecture Behavioral of decoder IS
 			ELSIF clk'EVENT and clk='1' THEN
 				opcode <= (OTHERS => '0');
 				we <= '0'; --read
-			END IF
+			END IF;
 		ELSIF rst = '1' and clk'EVENT and clk = '1' THEN
-			we <= '1' --write
-		END IF
-	END PROCESS
+			we <= '1'; --write
+		END IF;
+	END PROCESS;
 END Behavioral;

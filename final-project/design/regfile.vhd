@@ -5,9 +5,10 @@ USE IEEE.NUMERIC_STD.ALL;
 ENTITY regfile IS
 
 GENERIC ( NBIT : INTEGER := 32;
-NSEL : INTEGER := 3);
+NSEL : INTEGER := 6);
 
 PORT (
+reg_en: IN std_logic;
 clk : IN std_logic ;
 rst_s : IN std_logic ; -- synchronous reset
 we : IN std_logic ; -- write enable
@@ -39,7 +40,7 @@ BEGIN
 	
 	
 	BEGIN
-IF (clk'EVENT AND clk = '1') THEN
+	IF (clk'EVENT AND clk = '1' and reg_en = '1') THEN
 	IF (rst_s = '1') THEN
 		L_reset: FOR i IN 0 TO 2**NSEL-1 LOOP
 			regN(i) <= (OTHERS => '0');
