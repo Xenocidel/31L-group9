@@ -16,7 +16,7 @@ USE work.gen_array_pkg.ALL;
 
 ENTITY muxn1 IS
 
-GENERIC(in_num : INTEGER := 8; reg_width : INTEGER := 32); 
+GENERIC(in_num : INTEGER := 2; reg_width : INTEGER := 32); 
 
 PORT ( 
 in_list: IN array_gen (in_num -1 DOWNTO 0); 

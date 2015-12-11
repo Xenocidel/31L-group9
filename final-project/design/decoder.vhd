@@ -1,7 +1,7 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
 
-ENTITY controller is
+ENTITY decoder is
 	PORT(
 		clk, rst: IN STD_LOGIC;
 		instr: IN STD_LOGIC_VECTOR(31 DOWNTO 0); --from instruction memory
@@ -11,9 +11,9 @@ ENTITY controller is
 		opcode: OUT STD_LOGIC_VECTOR(3 DOWNTO 0); --goes to ALU
 		imm_i: OUT STD_LOGIC_VECTOR(14 DOWNTO 0) --goes to sign extender
 		);
-END controller;
+END decoder;
 
-Architecture Behavioral of controller IS
+Architecture Behavioral of decoder IS
 
 	--Universal
 	SIGNAL INSTRUCTION_TYPE: STD_LOGIC;
@@ -41,7 +41,7 @@ Architecture Behavioral of controller IS
 	PROCESS (clk, rst)
 	BEGIN
 		IF rst = '0' THEN --rst low means on
-			IF clk'EVENT and clk='1' and data_in="00000000000000000000000000000000" THEN
+			IF clk'EVENT and clk='1' THEN
 				instr_type <= INSTRUCTION_TYPE;
 				rs <= REGISTER_SOURCE_ADDRESS;
 				rd <= REGISTER_DESTINATION_ADDRESS;
@@ -49,7 +49,7 @@ Architecture Behavioral of controller IS
 				ri <= INSTRUCTION_TYPE;
 				opcode <= FUNCTION_CODE;
 				we <= '0'; --read
-			ELSIF clk'EVENT and clk='1' and data_in/="00000000000000000000000000000000" THEN
+			ELSIF clk'EVENT and clk='1' THEN
 				opcode <= (OTHERS => '0');
 				we <= '0'; --read
 			END IF
