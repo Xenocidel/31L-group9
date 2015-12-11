@@ -23,7 +23,7 @@ ARCHITECTURE Behavioral OF alu IS
 	BEGIN
 	PROCESS (clk, rst)
 		VARIABLE tmp : INTEGER;
-		VARIABLE tmp2 : STD_LOGIC_VECTOR(DATA_WIDTH-1 DOWNTO 0);
+		VARIABLE tmp2 : INTEGER;
 		BEGIN
 			IF clk'EVENT and clk = '1' and rst = '1' THEN --rst 1 means on
 				data_out <= (OTHERS => '0');
@@ -59,9 +59,11 @@ ARCHITECTURE Behavioral OF alu IS
 							data_out <= std_logic_vector(signed(data_reg) - signed(data_mux));
 						END IF;
 					WHEN "0011" => 								--compare reg and mux/immediate
-						IF signed(data_reg = data_mux) THEN
+						tmp := to_integer(signed(data_reg));
+						tmp2 := to_integer(signed(data_mux));
+						IF (tmp = tmp2) THEN
 							equal <= '1';
-						ELSIF signed(data_reg > data_mux) THEN
+						ELSIF (tmp > tmp2) THEN
 							carry <= '1'; 						--if reg > mux, then carry = 1 if mux < reg, then both equal and carry = 0.
 						END IF;
 					WHEN "0101" => --AND reg and mux/immediate
