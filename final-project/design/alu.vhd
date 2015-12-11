@@ -1,5 +1,6 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.All;
+USE IEEE.NUMERIC_STD.ALL;
 
 GENERIC(DATA_WIDTH: INTEGER := 32);
 		
@@ -73,22 +74,7 @@ ARCHITECTURE Behavioral OF alu IS
 						data_out <= data_reg XOR data_mux;
 					WHEN "1001" => --SLL reg mux/immediate number of places
 						tmp := to_integer(signed(data_mux));
-						tmp2 := data_reg;
-						IF tmp > 0 THEN
-							tmp2(0) := data_reg;
-							L1: FOR i IN 1 TO tmp LOOP			--shift by tmp to the left
-								tmp2(i) := tmp2(i-1)(DATA_WIDTH-2 DOWNTO 0) & '0';
-								END LOOP L1;
-							data_out <= tmp2(tmp);	
-						ELSIF tmp < 0 THEN
-							tmp2(tmp-1) := data_reg;
-							L2: FOR i IN tmp TO -1 LOOP			--shift by tmp to the right
-								tmp2(i) := '0' & tmp2(i-1)(DATA_WIDTH-1 DOWNTO 1);
-								END LOOP L2;
-							data_out <= tmp2(-1);
-						ELSE
-							data_out <= tmp2;
-						END IF;
+						data_out <= to_stdlogicvector(to_bitvector(data_reg) SLL tmp);			--shift by tmp (can be negative or 0) to the left
 					WHEN "1011" => --MOV reg/immediate to out
 						IF reg_imm = '0' THEN					--reg_imm checks if register or immediate instruction
 							data_out <= data_reg;
