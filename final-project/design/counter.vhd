@@ -27,7 +27,7 @@ BEGIN
 					temp := din;--Load din into counter register. Used for jump/branch statements.
 				ELSE											
 					temp := std_logic_vector((unsigned(temp)) + to_unsigned(STEP, NBIT));--Point to next instruction by counting up 4 bytes
-				END IF
+				END IF;
 			END IF;
 			dout <= temp;
 		END PROCESS;

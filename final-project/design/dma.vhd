@@ -31,8 +31,8 @@ ARCHITECTURE dma of dma is
 				ELSIF clk'EVENT and clk='1' and req='0' THEN
 					ack <= '0';
 					bus_used := '0';
-				END IF
-			END IF
-	END PROCESS
+				END IF;
+			END IF;
+	END PROCESS;
 
 END dma

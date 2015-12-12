@@ -13,4 +13,4 @@ ARCHITECTURE Structural of sign_extend is
 BEGIN
 	output <= std_logic_vector(resize(signed(input), 32)) WHEN rst='0';
 
-END Structural
+END Structural;
